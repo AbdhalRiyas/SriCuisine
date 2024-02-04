@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components.dart/squre_tile.dart';
-import 'package:flutter_application_1/components.dart/text_button.dart';
+import 'package:flutter_application_1/components.dart/sign_button.dart';
 import 'package:flutter_application_1/components.dart/text_field.dart';
 
 class LoginPage extends StatelessWidget {
@@ -79,6 +79,7 @@ class LoginPage extends StatelessWidget {
 
             //sign in button
             const SizedBox(height: 15),
+            
             MyButton(
               onTap: signUserIn,
             ),
@@ -129,7 +130,7 @@ class LoginPage extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
 
             //Register to Application
 
@@ -144,7 +145,8 @@ class LoginPage extends StatelessWidget {
                   color: Colors.blue,fontWeight:FontWeight.bold ),
                   ),
               ],
-            )
+            ),
+           
             
           ],
         )
