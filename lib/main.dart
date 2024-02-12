@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages.dart/signup_page.dart';
 import 'package:flutter_application_1/Pages.dart/login_page.dart';
 import 'package:flutter_application_1/Pages.dart/intro_page.dart';
+import 'package:flutter_application_1/Pages.dart/specification_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: IntroPage(),
+      home: SpecPage(),
+      //IntroPage(),
       //LoginPage(),
       //SignupPage(),
     );
