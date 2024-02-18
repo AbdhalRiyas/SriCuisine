@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Pages.dart/recipes.dart';
 import 'package:flutter_application_1/Pages.dart/signup_page.dart';
 import 'package:flutter_application_1/Pages.dart/login_page.dart';
 import 'package:flutter_application_1/Pages.dart/intro_page.dart';
@@ -17,7 +18,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SpecPage(),
+      home:
+      Recipes(), 
+      //SpecPage(),
       //IntroPage(),
       //LoginPage(),
       //SignupPage(),
