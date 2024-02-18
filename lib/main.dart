@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Pages.dart/recipes.dart';
+import 'package:flutter_application_1/Pages.dart/recipes_page.dart';
 import 'package:flutter_application_1/Pages.dart/signup_page.dart';
 import 'package:flutter_application_1/Pages.dart/login_page.dart';
 import 'package:flutter_application_1/Pages.dart/intro_page.dart';

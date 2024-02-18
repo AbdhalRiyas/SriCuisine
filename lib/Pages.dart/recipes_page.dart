@@ -26,7 +26,7 @@ class _Recipes extends State<Recipes> {
             title: "Noodles",
             cookTime: "15 Mins",
             calorie: "145",
-            thumbnailUrl: "thumbnailUrl",
+            thumbnailUrl: "thumbnailUrl1",
           ),
           RecipeCard(
             title: "Pasta",

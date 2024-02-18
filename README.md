@@ -1,4 +1,4 @@
-# flutter_application_1
+# SriCuisine
 
 A new Flutter project
 
