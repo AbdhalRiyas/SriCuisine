@@ -54,7 +54,7 @@ class _Recipes extends State<RecipesPage> {
         color: Colors.black,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
-          child: GNav(
+          child:  GNav(
             gap: 15,
             backgroundColor: Colors.black,
             color: Colors.yellow,

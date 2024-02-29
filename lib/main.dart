@@ -6,7 +6,6 @@ import 'package:flutter_application_1/Pages.dart/signup_page.dart';
 import 'package:flutter_application_1/Pages.dart/login_page.dart';
 import 'package:flutter_application_1/Pages.dart/intro_page.dart';
 import 'package:flutter_application_1/Pages.dart/specification_page.dart';
-
 import 'package:flutter_application_1/Pages.dart/FruitIngredientsScreen.dart';
 import 'package:flutter_application_1/Pages.dart/DairyProductsIngredientsScreen.dart';
 import 'package:flutter_application_1/Pages.dart/MeatIngredientsScreen.dart';
@@ -24,6 +23,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home:
+      //AvailableIngredientsScreen(),
+      //DairyProductsIngredientsScreen(),
+      //FruitIngredientsScreen(),
       RecipesPage(), 
       //SpecPage(),
       //IntroPage(),
