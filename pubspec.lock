@@ -91,6 +91,16 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+<<<<<<< HEAD
+  google_nav_bar:
+    dependency: "direct main"
+    description:
+      name: google_nav_bar
+      sha256: "1c8e3882fa66ee7b74c24320668276ca23affbd58f0b14a24c1e5590f4d07ab0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.6"
+=======
   leak_tracker:
     dependency: transitive
     description:
@@ -115,6 +125,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+>>>>>>> 9922f74b0980aecc10532d24b14c95f48ab80ff0
   lints:
     dependency: transitive
     description:
