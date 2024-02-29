@@ -97,7 +97,7 @@ class RecipeCard extends StatelessWidget {
                         size: 18,
                       ),
                       const SizedBox(width: 7),
-                      Text(cookTime,
+                      Text(cookTime + " min",
                           style: const TextStyle(
                             color: Colors.white,
                           )),
