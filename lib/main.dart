@@ -27,8 +27,8 @@ class MyApp extends StatelessWidget {
       //DairyProductsIngredientsScreen(),
       //FruitIngredientsScreen(),
       //RecipesPage(), 
-      SpecPage(),
-      //IntroPage(),
+      //SpecPage(),
+      IntroPage(),
       //LoginPage(),
       //SignupPage(),
     );
