@@ -43,7 +43,7 @@ class _FruitIngredientsScreenState extends State<FruitIngredientsScreen> {
 
   final List<int> _quantities = List.generate(6, (index) => (index + 1) * 100);
 
-  int _selectedFruit = 0; // Initially no selection
+  int _selectedFruit = -1; // Initially no selection
   int? _selectedQuantity; // Initially null
   Map<int, int> _selectedItems =
       {}; // Map to store selected items and their quantities

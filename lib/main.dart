@@ -24,17 +24,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: //AvailableIngredientsScreen(),
-          //VegetableIngredientsScreen(),
-          MeatIngredientsScreen(),
-      //  FruitIngredientsScreen(),
+      home: AvailableIngredientsScreen(),
+      // VegetableIngredientsScreen(),
+      // MeatIngredientsScreen(),
+      // FruitIngredientsScreen(),
       // DairyProductsIngredientsScreen(),
 
-      //RecipesPage(),
-      //SpecPage(),
-      //IntroPage(),
-      //LoginPage(),
-      //SignupPage(),
+      // RecipesPage(),
+      // SpecPage(),
+      // IntroPage(),
+      // LoginPage(),
+      // SignupPage(),
     );
   }
 }

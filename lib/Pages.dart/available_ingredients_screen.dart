@@ -8,7 +8,7 @@ class AvailableIngredientsScreen extends StatefulWidget {
 
 class _AvailableIngredientsScreenState
     extends State<AvailableIngredientsScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = -1;
 
   final List<String> _categories = [
     'Vegetables',

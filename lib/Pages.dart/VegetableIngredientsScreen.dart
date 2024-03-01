@@ -22,7 +22,7 @@ class _VegetableIngredientsScreenState
 
   final List<int> _quantities = List.generate(6, (index) => (index + 1) * 100);
 
-  int _selectedVegetables = 0; // Initially no selection
+  int _selectedVegetables = -1; // Initially no selection
   int? _selectedQuantity; // Initially null
   Map<int, int> _selectedItems =
       {}; // Map to store selected items and their quantities
