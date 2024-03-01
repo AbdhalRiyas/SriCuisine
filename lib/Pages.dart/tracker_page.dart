@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MaterialApp(home: IngredientsPage()));
-}
-
 // ignore: use_key_in_widget_constructors
 class IngredientsPage extends StatefulWidget {
   List<Ingredient> ingredients = <Ingredient>[];
