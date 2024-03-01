@@ -9,12 +9,6 @@ class IntroPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.yellow,
-        // appBar: AppBar(
-        //   title: Text("Appllication Bar"),
-        //   backgroundColor: Color.fromARGB(255, 247, 155, 18),
-        //   leading: Icon(Icons.menu),
-        //   actions: [IconButton(onPressed: () {}, icon: Icon(Icons.logout))],
-        // ),
         body: Center(
           child: Image(
             image: AssetImage('images/appLogo.jpg'),
