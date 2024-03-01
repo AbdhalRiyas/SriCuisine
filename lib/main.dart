@@ -26,9 +26,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: //AvailableIngredientsScreen(),
           //VegetableIngredientsScreen(),
-          //MeatIngredientsScreen(),
-          FruitIngredientsScreen(),
-      //DairyProductsIngredientsScreen(),
+          MeatIngredientsScreen(),
+      //  FruitIngredientsScreen(),
+      // DairyProductsIngredientsScreen(),
 
       //RecipesPage(),
       //SpecPage(),
