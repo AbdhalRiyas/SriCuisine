@@ -26,7 +26,7 @@ class _DairyProductsIngredientsScreenState
 
   final List<int> _quantities = List.generate(6, (index) => (index + 1) * 100);
 
-  int _selectedDairyProducts = 0; // Initially no selection
+  int _selectedDairyProducts = -1; // Initially no selection
   int? _selectedQuantity; // Initially null
   Map<int, int> _selectedItems =
       {}; // Map to store selected items and their quantities
@@ -43,11 +43,18 @@ class _DairyProductsIngredientsScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        backgroundColor: const Color(0xFFFFEB3B), // Light gray background
+        title: const Text(
           'Dairy Products',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.grey),
         ),
-        backgroundColor: Color(0xFFFFEB3B), // Light gray background
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -66,13 +73,14 @@ class _DairyProductsIngredientsScreenState
                       },
                       child: Container(
                         width: double.infinity,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 8),
                         decoration: BoxDecoration(
                           color: isSelected
-                              ? Color(0xFFE0E0E0) // Light gray for selection
+                              ? const Color(
+                                  0xFFE0E0E0) // Light gray for selection
                               : Colors.white,
                           borderRadius:
                               BorderRadius.circular(8), // Rounded corners
@@ -82,7 +90,7 @@ class _DairyProductsIngredientsScreenState
                               // Subtle shadow
                               spreadRadius: 1,
                               blurRadius: 3,
-                              offset: Offset(0, 1), // Offset for shadow
+                              offset: const Offset(0, 1), // Offset for shadow
                             ),
                           ],
                         ),
@@ -122,12 +130,12 @@ class _DairyProductsIngredientsScreenState
                     if (isSelected && _selectedQuantity != null)
                       Text(
                         'Selected Quantity: $_selectedQuantity g',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.green,
                         ),
                       ),
-                    SizedBox(height: 16), // Add space between items
+                    const SizedBox(height: 16), // Add space between items
                   ],
                 );
               }),

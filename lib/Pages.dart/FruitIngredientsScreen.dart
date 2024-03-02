@@ -6,68 +6,44 @@ class FruitIngredientsScreen extends StatefulWidget {
 }
 
 class _FruitIngredientsScreenState extends State<FruitIngredientsScreen> {
-  final List<String> _Fruits = [
+  final List<String> _fruits = [
     'Apples',
-    'Apricot',
     'Avocado',
     'Banana',
     'Blueberry',
     'Cactus fruit',
     'Cantaloupe',
-    'Carambula',
     'Cherry',
-    'Cherry Wax',
-    'Chestnut',
     'Clementine',
-    'Cocos',
     'Dates',
     'Eggplant',
-    'Fig',
     'Ginger Root',
-    'Granadilla',
     'Grape',
     'Grapefruit',
     'Guava',
-    'Hazelnut',
-    'Huckleberry',
     'Kiwi',
-    'Kaki',
-    'Kohlrabi',
-    'Kumsquats',
-    'Lychee',
     'Mandarine',
     'Mango',
     'Mangostan',
-    'Maracuja',
     'Mulberry',
     'Nectarine',
-    'Nut',
     'Orange',
     'Papaya',
     'Passion fruit',
     'Peach',
-    'Pepino',
     'Pear',
-    'Physalis',
     'Pineapple',
-    'Pitahaya Red',
-    'Plum',
     'Pomegranate',
-    'Pomelo Sweetie',
-    'Quince',
     'Rambutan',
     'Raspberry',
     'Redcurrant',
-    'Salak',
     'Strawberry',
-    'Tamarillo',
-    'Walnut',
     'Watermelon',
   ];
 
   final List<int> _quantities = List.generate(6, (index) => (index + 1) * 100);
 
-  int _selectedFruit = 0; // Initially no selection
+  int _selectedFruit = -1; // Initially no selection
   int? _selectedQuantity; // Initially null
   Map<int, int> _selectedItems =
       {}; // Map to store selected items and their quantities
@@ -84,11 +60,18 @@ class _FruitIngredientsScreenState extends State<FruitIngredientsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        backgroundColor: const Color(0xFFFFEB3B),
+        title: const Text(
           'Fruits',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.grey),
         ),
-        backgroundColor: Color(0xFFFFEB3B), // Light gray background
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -96,9 +79,9 @@ class _FruitIngredientsScreenState extends State<FruitIngredientsScreen> {
             padding: const EdgeInsets.all(16.0), // Add padding
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: List.generate(_Fruits.length, (index) {
-                final dairyProduct = _Fruits[index];
-                final isSelected = _Fruits == index;
+              children: List.generate(_fruits.length, (index) {
+                final fruits = _fruits[index];
+                final isSelected = _selectedFruit == index;
                 return Column(
                   children: [
                     GestureDetector(
@@ -107,13 +90,14 @@ class _FruitIngredientsScreenState extends State<FruitIngredientsScreen> {
                       },
                       child: Container(
                         width: double.infinity,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 8),
                         decoration: BoxDecoration(
                           color: isSelected
-                              ? Color(0xFFE0E0E0) // Light gray for selection
+                              ? const Color(
+                                  0xFFE0E0E0) // Light gray for selection
                               : Colors.white,
                           borderRadius:
                               BorderRadius.circular(8), // Rounded corners
@@ -123,7 +107,7 @@ class _FruitIngredientsScreenState extends State<FruitIngredientsScreen> {
                               // Subtle shadow
                               spreadRadius: 1,
                               blurRadius: 3,
-                              offset: Offset(0, 1), // Offset for shadow
+                              offset: const Offset(0, 1), // Offset for shadow
                             ),
                           ],
                         ),
@@ -131,7 +115,7 @@ class _FruitIngredientsScreenState extends State<FruitIngredientsScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              dairyProduct,
+                              fruits,
                               style: TextStyle(
                                 color: isSelected ? Colors.blue : Colors.black,
                                 fontSize: 18,
@@ -163,12 +147,12 @@ class _FruitIngredientsScreenState extends State<FruitIngredientsScreen> {
                     if (isSelected && _selectedQuantity != null)
                       Text(
                         'Selected Quantity: $_selectedQuantity g',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.green,
                         ),
                       ),
-                    SizedBox(height: 16), // Add space between items
+                    const SizedBox(height: 16), // Add space between items
                   ],
                 );
               }),
