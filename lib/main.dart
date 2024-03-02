@@ -11,6 +11,7 @@ import 'package:flutter_application_1/Pages.dart/FruitIngredientsScreen.dart';
 import 'package:flutter_application_1/Pages.dart/DairyProductsIngredientsScreen.dart';
 import 'package:flutter_application_1/Pages.dart/MeatIngredientsScreen.dart';
 import 'package:flutter_application_1/Pages.dart/VegetableIngredientsScreen.dart';
+import 'package:flutter_application_1/pages.dart/main_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,12 +24,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:
-      RecipesPage(), 
-      //SpecPage(),
+      home: MainScreen(),
+      // SpecPage(),
       //IntroPage(),
       //LoginPage(),
       //SignupPage(),
+      //FruitIngredientsScreen()
+      //DairyProductsIngredientsScreen()
     );
   }
 }

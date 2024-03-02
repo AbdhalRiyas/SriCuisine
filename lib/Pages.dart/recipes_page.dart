@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components.dart/recipe_card.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
 class RecipesPage extends StatefulWidget {
   @override
@@ -8,6 +7,7 @@ class RecipesPage extends StatefulWidget {
 }
 
 class _Recipes extends State<RecipesPage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,41 +49,6 @@ class _Recipes extends State<RecipesPage> {
               calorie: "250",
               thumbnailUrl: "https://www.thespruceeats.com/thmb/"),
         ],
-      ),
-      bottomNavigationBar: Container(
-        color: Colors.black,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
-          child: GNav(
-            gap: 15,
-            backgroundColor: Colors.black,
-            color: Colors.yellow,
-            activeColor: Colors.black,
-            tabBackgroundColor: Colors.yellow.shade100,
-            padding: const EdgeInsets.all(16),
-            onTabChange: (index) {
-              print(index);
-            },
-            tabs: const [
-              GButton(
-                icon: Icons.home,
-                text: 'Home',
-              ),
-              GButton(
-                icon: Icons.restaurant_menu,
-                text: 'Recipes',
-              ),
-              GButton(
-                icon: Icons.settings,
-                text: 'Settings',
-              ),
-              GButton(
-                icon: Icons.person,
-                text: 'Profile',
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }
