@@ -33,12 +33,12 @@ class _AvailableIngredientsScreenState
           style: TextStyle(color: Colors.grey),
         ),
         centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        // leading: IconButton(
+        //   icon: const Icon(Icons.arrow_back),
+        //   onPressed: () {
+        //     Navigator.pop(context);
+        //   },
+        // ),
       ),
       body: Center(
         child: Padding(
