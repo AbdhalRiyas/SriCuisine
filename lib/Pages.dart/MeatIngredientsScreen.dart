@@ -38,7 +38,7 @@ class _MeatIngredientsScreenState extends State<MeatIngredientsScreen> {
         backgroundColor: const Color(0xFFFFEB3B),
         title: const Text(
           'Meats',
-          style: TextStyle(color: Colors.grey),
+          style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
         leading: IconButton(

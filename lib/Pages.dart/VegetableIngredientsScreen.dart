@@ -42,7 +42,7 @@ class _VegetableIngredientsScreenState
         backgroundColor: const Color(0xFFFFEB3B),
         title: const Text(
           'Vegetables',
-          style: TextStyle(color: Colors.grey),
+          style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
         leading: IconButton(

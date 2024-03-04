@@ -63,7 +63,7 @@ class _FruitIngredientsScreenState extends State<FruitIngredientsScreen> {
         backgroundColor: const Color(0xFFFFEB3B),
         title: const Text(
           'Fruits',
-          style: TextStyle(color: Colors.grey),
+          style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
         leading: IconButton(
