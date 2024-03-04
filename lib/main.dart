@@ -13,10 +13,9 @@ import 'package:flutter_application_1/Pages.dart/FruitIngredientsScreen.dart';
 import 'package:flutter_application_1/Pages.dart/DairyProductsIngredientsScreen.dart';
 import 'package:flutter_application_1/Pages.dart/MeatIngredientsScreen.dart';
 import 'package:flutter_application_1/Pages.dart/VegetableIngredientsScreen.dart';
+import 'package:flutter_application_1/pages.dart/available_ingredients_screen.dart';
 import 'package:flutter_application_1/pages.dart/main_screen.dart';
-import 'package:flutter_application_1/Pages.dart/calorie.dart';
-import 'package:flutter_application_1/Pages.dart/tracker_page.dart';
-import 'package:flutter_application_1/Pages.dart/BMI_page.dart';
+import 'package:flutter_application_1/pages.dart/recipe_detail_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,15 +28,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:
-          // AvailableIngredientsScreen(),
-          // VegetableIngredientsScreen(),
-          // MeatIngredientsScreen(),
-          // FruitIngredientsScreen(),
-          // DairyProductsIngredientsScreen(),
-          // BMICalculatorScreen(),
-          BMICalculatorPage(),
-      // MainScreen(),
+      home: //AvailableIngredientsScreen(),
+          //VegetableIngredientsScreen(),
+      // MeatIngredientsScreen(),
+      // FruitIngredientsScreen(),
+      // DairyProductsIngredientsScreen(),
+      MainScreen(),
       // RecipesPage(),
       // SpecPage(),
       // IntroPage(),
