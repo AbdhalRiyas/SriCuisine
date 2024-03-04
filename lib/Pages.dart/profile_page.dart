@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/components.dart/user_info_tile.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -48,7 +49,7 @@ class ProfilePage extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 24),
             child: GestureDetector(
               onTap: () {
-                print('Code to open file manager');
+                //print('Code to open file manager');
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -62,12 +63,12 @@ class ProfilePage extends StatelessWidget {
                       color: Colors.grey,
                       borderRadius: BorderRadius.circular(100),
                       // Profile Picture
-                      image: DecorationImage(
+                      image: const DecorationImage(
                           image: AssetImage('assets/images/profile.jpg'),
                           fit: BoxFit.cover),
                     ),
                   ),
-                  Row(
+                 const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text('Change Profile Picture',
@@ -88,33 +89,33 @@ class ProfilePage extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(top: 24),
             width: MediaQuery.of(context).size.width,
-            // child: Column(
-            //   mainAxisAlignment: MainAxisAlignment.start,
-            //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   children: [
-            //     UserInfoTile(
-            //       margin: EdgeInsets.only(bottom: 16),
-            //       label: 'Email',
-            //       value: 'reinazahradummy@gmail.com',
-            //     ),
-            //     UserInfoTile(
-            //       margin: EdgeInsets.only(bottom: 16),
-            //       label: 'Full Name',
-            //       value: 'Reina Zahra Azizah',
-            //     ),
-            //     UserInfoTile(
-            //       margin: EdgeInsets.only(bottom: 16),
-            //       label: 'Subscription Type',
-            //       value: 'Premium Subscription',
-            //       valueBackground: Colors.white,
-            //     ),
-            //     UserInfoTile(
-            //       margin: EdgeInsets.only(bottom: 16),
-            //       label: 'Subscription Time',
-            //       value: 'Until 22 Oct 2021',
-            //     ),
-            //   ],
-            // ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                UserInfoTile(
+                  margin: EdgeInsets.only(bottom: 16),
+                  label: 'Email',
+                  value: 'JohnDoe@gmail.com',
+                ),
+                UserInfoTile(
+                  margin: EdgeInsets.only(bottom: 16),
+                  label: 'Full Name',
+                  value: 'John Doe',
+                ),
+                UserInfoTile(
+                  margin: EdgeInsets.only(bottom: 16),
+                  label: 'Diet Type',
+                  value: ' -- ',
+                  valueBackground: Colors.white,
+                ),
+                UserInfoTile(
+                  margin: EdgeInsets.only(bottom: 16),
+                  label: 'Allergies',
+                  value: '#,#,#,#',
+                ),
+              ],
+            ),
           )
         ],
       ),
