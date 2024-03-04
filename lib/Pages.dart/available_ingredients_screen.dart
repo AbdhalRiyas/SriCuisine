@@ -27,18 +27,14 @@ class _AvailableIngredientsScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFEB3B),
-        title: const Text(
-          'Available Ingredients',
-          style: TextStyle(color: Colors.grey),
-        ),
-        centerTitle: true,
-        // leading: IconButton(
-        //   icon: const Icon(Icons.arrow_back),
-        //   onPressed: () {
-        //     Navigator.pop(context);
-        //   },
-        // ),
+        backgroundColor: Colors.yellow,
+        title: const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.shopping_cart),
+              SizedBox(width: 10),
+              Text('Available Ingredients')
+            ]),
       ),
       body: Center(
         child: Padding(

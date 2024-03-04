@@ -46,7 +46,7 @@ class _DairyProductsIngredientsScreenState
         backgroundColor: const Color(0xFFFFEB3B), // Light gray background
         title: const Text(
           'Dairy Products',
-          style: TextStyle(color: Colors.grey),
+          style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
         leading: IconButton(
