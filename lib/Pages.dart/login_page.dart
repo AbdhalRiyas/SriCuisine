@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components.dart/squre_tile.dart';
 import 'package:flutter_application_1/components.dart/sign_button.dart';
 import 'package:flutter_application_1/components.dart/text_field.dart';
+import 'package:flutter_application_1/Pages.dart/signup_page.dart';
+import 'package:flutter_application_1/Pages.dart/forgotPassword_page.dart';
+
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -64,18 +67,26 @@ class LoginPage extends StatelessWidget {
 
             const SizedBox(height: 15),
 
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 25.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
+                  GestureDetector(
+                    child:const Text(
                     'forgot password',
                     style: TextStyle(color: Colors.black),
                   ),
+                  onTap : (){
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext)=>ForgotPassPage()));
+                  },
+
+                  )
+                  
                 ],
               ),
             ),
+
 
             //sign in button
             const SizedBox(height: 15),
@@ -134,16 +145,24 @@ class LoginPage extends StatelessWidget {
 
             //Register to Application
 
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Not a Member ?"),
-                SizedBox(width: 5,),
-                Text(
+                const Text("Not a Member ?"),
+                const SizedBox(
+                  width: 5,
+                ),
+                GestureDetector(
+                  child:const Text(
                   "Register now",
-                style: TextStyle(
-                  color: Colors.blue,fontWeight:FontWeight.bold ),
-                  ),
+                  style: TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.bold),
+
+                ),
+                onTap : (){
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext)=>SignupPage()));
+                  },
+                )
               ],
             ),
            

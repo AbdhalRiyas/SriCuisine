@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components.dart/signout_button.dart';
 import 'package:flutter_application_1/components.dart/text_field.dart';
+import 'package:flutter_application_1/Pages.dart/login_page.dart';
 
 
 class SignupPage extends StatelessWidget {
@@ -92,16 +93,23 @@ class SignupPage extends StatelessWidget {
           //already have an account log in
           const SizedBox(height: 15),
           
-          const Row(
+          Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Already have an Account ?"),
+              children:[
+                const Text("Already have an Account ?"),
                 SizedBox(width: 5,),
-                Text(
-                  "Sign in",
-                style: TextStyle(
+                GestureDetector(
+                  child:const Text(
+                     "Sign in",
+                  style: TextStyle(
                   color: Colors.blue,fontWeight:FontWeight.bold ),
+
                   ),
+                   onTap : (){
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext)=>LoginPage()));
+                  },
+                )
+                
               ],
             )
 
