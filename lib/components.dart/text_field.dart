@@ -29,7 +29,7 @@ class MyTextField extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.brown) //clicked text field
               ),
-          fillColor: Colors.grey,
+          fillColor: const Color.fromARGB(255, 252, 251, 251),
           filled: true,
           hintText: hintText,
         ),

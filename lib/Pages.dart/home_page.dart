@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/components.dart/recipe_card.dart';
 
 class  HomePage extends StatefulWidget {
   @override
