@@ -11,6 +11,7 @@ class _BMIPageScreenState extends State<BMIPageScreen> {
   double _bmi = 0.0;
   String _selectedGender = 'Male'; // Default gender is Male
   String _category = '';
+  String _calorieIntake = '';
 
   void _calculateBMI() {
     setState(() {
@@ -20,6 +21,7 @@ class _BMIPageScreenState extends State<BMIPageScreen> {
       } else {
         _bmi = 0.0;
         _category = '';
+        _calorieIntake = '';
       }
     });
   }
@@ -33,6 +35,26 @@ class _BMIPageScreenState extends State<BMIPageScreen> {
       return 'Overweight';
     } else {
       return 'Obese';
+    }
+  }
+
+  void _calculateCalorieIntake() {
+    double baseCalories = 2000;
+    switch (_category) {
+      case 'Underweight':
+        _calorieIntake = (baseCalories * 1.2).toStringAsFixed(0);
+        break;
+      case 'Normal weight':
+        _calorieIntake = (baseCalories * 1.2).toStringAsFixed(0);
+        break;
+      case 'Overweight':
+        _calorieIntake = (baseCalories * 1.2).toStringAsFixed(0);
+        break;
+      case 'obese':
+        _calorieIntake = (baseCalories * 1.2).toStringAsFixed(0);
+        break;
+      default:
+        _calorieIntake = '';
     }
   }
 
@@ -131,6 +153,12 @@ class _BMIPageScreenState extends State<BMIPageScreen> {
                       style: const TextStyle(fontSize: 18),
                       textAlign: TextAlign.center,
                     ),
+                    const SizedBox(height: 8.0),
+                    // Text(
+                    //   'Daily Calorie Intake: $_calorieIntake kcal',
+                    //   style: const TextStyle(fontSize: 18),
+                    //   textAlign: TextAlign.center,
+                    // )
                   ],
                 ),
               ),
