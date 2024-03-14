@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages.dart/VegetableIngredientsScreen.dart';
+import 'package:flutter_application_1/pages.dart/FruitIngredientsScreen.dart';
+import 'package:flutter_application_1/pages.dart/MeatIngredientsScreen.dart';
+import 'package:flutter_application_1/pages.dart/DairyProductsIngredientsScreen.dart';
 
 class AvailableIngredientsScreen extends StatefulWidget {
   @override
@@ -14,13 +18,36 @@ class _AvailableIngredientsScreenState
     'Vegetables',
     'Meats',
     'Fruits',
-    'Dairy Products',
+    'Staples',
   ];
 
   void _onCategoryTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+
+    switch (_categories[index]) {
+      case 'Vegetables':
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => VegetableIngredientsScreen()));
+        break;
+      case 'Meats':
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => MeatIngredientsScreen()));
+        break;
+      case 'Fruits':
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => FruitIngredientsScreen()));
+        break;
+      case 'Staples':
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DairyProductsIngredientsScreen()));
+        break;
+    }
   }
 
   @override
@@ -100,7 +127,7 @@ class _AvailableIngredientsScreenState
           height: 50,
           child: ElevatedButton(
             onPressed: () {
-              // Add your submit functionality here
+              //  submit function
             },
             child: const Text(
               'Submit',

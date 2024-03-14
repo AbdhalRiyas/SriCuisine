@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages.dart/available_ingredients_screen.dart';
 
 class VegetableIngredientsScreen extends StatefulWidget {
   @override
@@ -20,18 +21,15 @@ class _VegetableIngredientsScreenState
     'Beatroots',
   ];
 
-  final List<int> _quantities = List.generate(6, (index) => (index + 1) * 100);
+  List<String> _selectedVegetables = [];
 
-  int _selectedVegetables = -1; // Initially no selection
-  int? _selectedQuantity; // Initially null
-  Map<int, int> _selectedItems =
-      {}; // Map to store selected items and their quantities
-
-  void _onVegetablesTapped(int index) {
+  void _onVegetablesSelected(String vegetable) {
     setState(() {
-      _selectedItems[_selectedVegetables] = _selectedQuantity ?? 0;
-      _selectedVegetables = index;
-      _selectedQuantity = _selectedItems[index];
+      if (_selectedVegetables.contains(vegetable)) {
+        _selectedVegetables.remove(vegetable);
+      } else {
+        _selectedVegetables.add(vegetable);
+      }
     });
   }
 
@@ -48,96 +46,69 @@ class _VegetableIngredientsScreenState
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AvailableIngredientsScreen(),
+                ));
           },
         ),
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0), // Add padding
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: List.generate(_vegetables.length, (index) {
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (_selectedVegetables.isNotEmpty)
+            Container(
+              padding: const EdgeInsets.all(8),
+              color: Colors.blue.withOpacity(0.2),
+              child: Text(
+                'Selected Vegetables: ${_selectedVegetables.join(",")}',
+                style: const TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          const SizedBox(height: 16),
+          Expanded(
+            child: ListView.builder(
+              itemCount: _vegetables.length,
+              itemBuilder: (context, index) {
                 final vegetable = _vegetables[index];
-                final isSelected = _selectedVegetables == index;
-                return Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        _onVegetablesTapped(index);
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 12),
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: isSelected
-                              ? const Color(
-                                  0xFFE0E0E0) // Light gray for selection
-                              : Colors.white,
-                          borderRadius:
-                              BorderRadius.circular(8), // Rounded corners
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.2),
-                              // Subtle shadow
-                              spreadRadius: 1,
-                              blurRadius: 3,
-                              offset: const Offset(0, 1), // Offset for shadow
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              vegetable,
-                              style: TextStyle(
-                                color: isSelected ? Colors.blue : Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Roboto', // Example custom font
-                              ),
-                            ),
-                            if (isSelected)
-                              DropdownButton<int>(
-                                value: _selectedQuantity,
-                                onChanged: (value) {
-                                  setState(() {
-                                    _selectedQuantity = value;
-                                  });
-                                },
-                                items: _quantities
-                                    .map<DropdownMenuItem<int>>(
-                                      (int value) => DropdownMenuItem<int>(
-                                        value: value,
-                                        child: Text('$value g'),
-                                      ),
-                                    )
-                                    .toList(),
-                              ),
-                          ],
+                final isSelected = _selectedVegetables.contains(vegetable);
+                return GestureDetector(
+                  onTap: () {
+                    _onVegetablesSelected(vegetable);
+                  },
+                  child: Card(
+                    color: isSelected
+                        ? const Color.fromARGB(255, 180, 180, 117)
+                        : Colors.white,
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 4.0,
+                      horizontal: 8.0,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        vegetable,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: isSelected ? Colors.white : Colors.black,
                         ),
                       ),
                     ),
-                    if (isSelected && _selectedQuantity != null)
-                      Text(
-                        'Selected Quantity: $_selectedQuantity g',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green,
-                        ),
-                      ),
-                    const SizedBox(height: 16), // Add space between items
-                  ],
+                  ),
                 );
-              }),
+              },
             ),
           ),
-        ),
+        ],
       ),
     );
   }

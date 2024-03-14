@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -14,6 +16,15 @@ class _BMIPageScreenState extends State<BMIPageScreen> {
   String _selectedGender = 'Male'; // Default gender is Male
   String _category = '';
   String _calorieIntake = '';
+  String? _selectedActivityLevel; // Default activity level
+
+  final List<String> _activitylevels = [
+    'Sedentary',
+    'Lightly active',
+    'Moderately active',
+    'Very active',
+    'Extra active'
+  ];
 
   void _calculateBMI() {
     setState(() {
@@ -50,24 +61,28 @@ class _BMIPageScreenState extends State<BMIPageScreen> {
       bmr = 447.593 + (9.247 * _weight) + (3.098 * _height) - (4.330 * _age);
     }
 
-    double activityLevel = 1.2;
+    double activityLevel;
 
-    switch (_category) {
-      case 'Underweight':
-        _calorieIntake = (bmr * activityLevel).toStringAsFixed(0);
+    switch (_selectedActivityLevel) {
+      case 'Sedentary':
+        activityLevel = 1.2;
         break;
-      case 'Normal weight':
-        _calorieIntake = (bmr * activityLevel).toStringAsFixed(0);
+      case 'Lightly active':
+        activityLevel = 1.375;
         break;
-      case 'Overweight':
-        _calorieIntake = (bmr * activityLevel).toStringAsFixed(0);
+      case 'Moderately active':
+        activityLevel = 1.55;
         break;
-      case 'obese':
-        _calorieIntake = (bmr * activityLevel).toStringAsFixed(0);
+      case 'Very active':
+        activityLevel = 1.725;
+        break;
+      case 'Extra activity':
+        activityLevel = 1.9;
         break;
       default:
-        _calorieIntake = '';
+        activityLevel = 1.0;
     }
+    _calorieIntake = (bmr * activityLevel).toStringAsFixed(0);
   }
 
   @override
@@ -87,83 +102,110 @@ class _BMIPageScreenState extends State<BMIPageScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Center(
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    labelText: 'Height (cm)',
-                    border: OutlineInputBorder(),
-                  ),
-                  onChanged: (value) {
-                    setState(() {
-                      _height = double.tryParse(value) ?? 0.0;
-                    });
-                  },
-                ),
-              ),
-              const SizedBox(height: 16.0),
-              Center(
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    labelText: 'Weight (kg)',
-                    border: OutlineInputBorder(),
-                  ),
-                  onChanged: (value) {
-                    setState(() {
-                      _weight = double.tryParse(value) ?? 0.0;
-                    });
-                  },
-                ),
-              ),
-              const SizedBox(height: 16.0),
-              Center(
-                  child: TextField(
+              const SizedBox(height: 20),
+              TextField(
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
+                  labelText: 'Height (cm)',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    _height = double.tryParse(value) ?? 0.0;
+                  });
+                },
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Weight (kg)',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    _weight = double.tryParse(value) ?? 0.0;
+                  });
+                },
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
                   labelText: 'Age (years)',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                 ),
                 onChanged: (value) {
                   setState(() {
                     _age = int.tryParse(value) ?? 0;
                   });
                 },
-              )),
-              const SizedBox(height: 16.0),
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Radio<String>(
-                      value: 'Male',
-                      groupValue: _selectedGender,
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedGender = value!;
-                        });
-                      },
-                    ),
-                    const Text('Male'),
-                    Radio<String>(
-                      value: 'Female',
-                      groupValue: _selectedGender,
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedGender = value!;
-                        });
-                      },
-                    ),
-                    const Text('Female'),
-                  ],
+              ),
+              const SizedBox(height: 20),
+              DropdownButtonFormField<String>(
+                value: _selectedActivityLevel,
+                onChanged: (value) {
+                  setState(() {
+                    _selectedActivityLevel = value!;
+                  });
+                },
+                items: _activitylevels.map((String level) {
+                  return DropdownMenuItem<String>(
+                    value: level,
+                    child: Text(level),
+                  );
+                }).toList(),
+                decoration: InputDecoration(
+                  labelText: 'Choose your activity level',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                 ),
               ),
-              const SizedBox(height: 16.0),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Radio<String>(
+                    value: 'Male',
+                    groupValue: _selectedGender,
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedGender = value!;
+                      });
+                    },
+                  ),
+                  const Text('Male'),
+                  Radio<String>(
+                    value: 'Female',
+                    groupValue: _selectedGender,
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedGender = value!;
+                      });
+                    },
+                  ),
+                  const Text('Female'),
+                ],
+              ),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _calculateBMI,
                 child: const Text('Calculate BMI'),
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  elevation: 5,
+                ),
               ),
-              const SizedBox(height: 16.0),
+              const SizedBox(height: 20),
               Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
