@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/recipe.dart';
 
 class RecipeCard extends StatelessWidget {
   final String title;
   final String calorie;
   final String cookTime;
   final String thumbnailUrl;
+  final Recipe recipes;
   RecipeCard({
     required this.title,
     required this.cookTime,
     required this.calorie,
     required this.thumbnailUrl,
+    required Recipe recipe,
+    required this.recipes,
   });
   @override
   Widget build(BuildContext context) {
@@ -50,7 +54,8 @@ class RecipeCard extends StatelessWidget {
                 title,
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 19,
+                  fontSize: 30,
+                  fontFamily: 'Times New Roman',
                 ),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
@@ -75,7 +80,7 @@ class RecipeCard extends StatelessWidget {
                       const Icon(Icons.local_fire_department,
                           color: Colors.yellow, size: 18),
                       const SizedBox(width: 7),
-                      Text(calorie + " Kcal",
+                      Text(calorie + " cal",
                           style: const TextStyle(
                             color: Colors.white,
                           )),
