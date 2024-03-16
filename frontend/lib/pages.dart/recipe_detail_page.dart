@@ -74,6 +74,14 @@ class _RecipeDetailPageState extends State<RecipeDetailPage> {
                   //   fit: BoxFit.cover,
                   // ),
                   const SizedBox(height: 10),
+                  // Text(
+                  //   widget.title,
+                  //   style: const TextStyle(
+                  //     fontSize: 24,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
