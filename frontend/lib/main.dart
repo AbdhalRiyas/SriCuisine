@@ -1,8 +1,6 @@
-// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages.dart/forgotPassword_page.dart';
-import 'package:flutter_application_1/Pages.dart/recipes_page.dart';
 import 'package:flutter_application_1/Pages.dart/signup_page.dart';
 import 'package:flutter_application_1/Pages.dart/login_page.dart';
 import 'package:flutter_application_1/Pages.dart/intro_page.dart';
@@ -28,6 +26,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        fontFamily: "Times New Roman",
+      ),
       debugShowCheckedModeBanner: false,
       home: 
       // SpecPage(),
