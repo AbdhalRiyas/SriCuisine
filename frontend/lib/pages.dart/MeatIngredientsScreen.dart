@@ -15,6 +15,9 @@ class _MeatIngredientsScreenState extends State<MeatIngredientsScreen> {
     'Beef',
     'Lamb',
     'Turkey',
+    'Prawns',
+    'Crab',
+    'Clamps',
   ];
 
   List<String> _selectedMeats = [];

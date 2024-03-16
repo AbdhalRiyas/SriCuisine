@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages.dart/VegetableIngredientsScreen.dart';
 import 'package:flutter_application_1/pages.dart/FruitIngredientsScreen.dart';
 import 'package:flutter_application_1/pages.dart/MeatIngredientsScreen.dart';
-import 'package:flutter_application_1/pages.dart/DairyProductsIngredientsScreen.dart';
+import 'package:flutter_application_1/pages.dart/StaplesIngredientsScreen.dart';
 
 class AvailableIngredientsScreen extends StatefulWidget {
   @override
@@ -46,7 +46,7 @@ class _AvailableIngredientsScreenState
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => DairyProductsIngredientsScreen()));
+                builder: (context) => StaplesIngredientsScreen()));
         break;
     }
   }

@@ -10,15 +10,22 @@ class VegetableIngredientsScreen extends StatefulWidget {
 class _VegetableIngredientsScreenState
     extends State<VegetableIngredientsScreen> {
   final List<String> _vegetables = [
-    'Lettuce',
-    'Tomatoes',
-    'Cucumbers',
-    'Carrots',
+    'Mushrooms',
+    'Raddish',
+    'Cauliflower',
     'Broccoli',
-    'Spinach',
+    'Egg-plant'
+        'Spinach',
+    'Cucumber',
+    'Bell Pepper',
+    'Bitter-Gourd',
+    'Tomatoes',
+    'Carrots',
+    'Green Beans',
+    'Pumpkin',
+    'Cabbage',
     'Potatoes',
-    'Beans',
-    'Beatroots',
+    'Coriander',
   ];
 
   List<String> _selectedVegetables = [];
