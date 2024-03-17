@@ -1,8 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages.dart/VegetableIngredientsScreen.dart';
 import 'package:flutter_application_1/pages.dart/FruitIngredientsScreen.dart';
 import 'package:flutter_application_1/pages.dart/MeatIngredientsScreen.dart';
-import 'package:flutter_application_1/pages.dart/DairyProductsIngredientsScreen.dart';
+import 'package:flutter_application_1/pages.dart/StaplesIngredientsScreen.dart';
 
 class AvailableIngredientsScreen extends StatefulWidget {
   @override
@@ -45,7 +46,7 @@ class _AvailableIngredientsScreenState
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => DairyProductsIngredientsScreen()));
+                builder: (context) => StaplesIngredientsScreen()));
         break;
     }
   }
@@ -55,13 +56,12 @@ class _AvailableIngredientsScreenState
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.yellow,
-        title: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.shopping_cart),
-              SizedBox(width: 10),
-              Text('Available Ingredients')
-            ]),
+        title:
+            const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Icon(CupertinoIcons.square_grid_2x2_fill),
+          SizedBox(width: 10),
+          Text('Available Ingredients')
+        ]),
       ),
       body: Center(
         child: Padding(
