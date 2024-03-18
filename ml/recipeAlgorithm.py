@@ -3,15 +3,21 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
 
 # Load the dataset
-df = pd.read_csv("Demo_IndianFoodDataset.csv")
+try:
+    df = pd.read_csv("Demo_IndianFoodDataset.csv", encoding="utf-8")
+except UnicodeDecodeError:
+    df = pd.read_csv("Demo_IndianFoodDataset.csv", encoding="latin1")
+
 
 # Let the user enter their allergies and ingredients
 user_allergens = input("Enter your allergies (comma-separated): ").strip().split(",")
 user_ingredients = input("Enter the ingredients you have at home (comma-separated): ").strip().split(",")
 
 # Filter out recipes containing the user's allergens
-for allergen in user_allergens:
-    df = df[~df['Allergens'].str.contains(allergen, na=False)]
+if len(user_allergens) == 1:
+    df = df[~df['Allergens'].str.contains(user_allergens[0], na=False)]
+elif len(user_allergens) == 2:
+    df = df[~df['Allergens'].str.contains(user_allergens[0], na=False) & ~df['Allergens'].str.contains(user_allergens[1], na=False)]
 
 # Drop rows with missing values in the 'Ingredients' column
 df = df.dropna(subset=['Ingredients'])
@@ -19,12 +25,13 @@ df = df.dropna(subset=['Ingredients'])
 # Combine all ingredients into one string for each recipe
 df['Ingredients_str'] = df['Ingredients'].apply(lambda x: ' '.join(x.split(', ')))
 
-# Combine user ingredients into one string
-user_ingredients_str = ', '.join(user_ingredients)
+# Combine user allergens and ingredients into one list
+user_allergens.extend(user_ingredients)
+user_input = ', '.join(user_allergens)
 
-# Combine user ingredients with recipe ingredients
+# Combine user input with recipe ingredients
 all_ingredients = df['Ingredients_str'].tolist()
-all_ingredients.append(user_ingredients_str)
+all_ingredients.append(user_input)
 
 # Vectorize ingredients using CountVectorizer
 vectorizer = CountVectorizer()
