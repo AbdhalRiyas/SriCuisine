@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_1/pages.dart/home_page.dart';
 
 class BMIPageScreen extends StatefulWidget {
   @override
@@ -95,6 +94,17 @@ class _BMIPageScreenState extends State<BMIPageScreen> {
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePage(),
+              ),
+            );
+          },
+        ),
       ),
       body: SingleChildScrollView(
         child: Container(

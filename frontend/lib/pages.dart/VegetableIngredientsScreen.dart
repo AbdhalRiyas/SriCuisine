@@ -83,13 +83,13 @@ class _VegetableIngredientsScreenState
               itemBuilder: (context, index) {
                 final vegetable = _vegetables[index];
                 final isSelected = _selectedVegetables.contains(vegetable);
-                return GestureDetector(
+                return InkWell(
                   onTap: () {
                     _onVegetablesSelected(vegetable);
                   },
                   child: Card(
                     color: isSelected
-                        ? const Color.fromARGB(255, 180, 180, 117)
+                        ? const Color.fromARGB(174, 255, 255, 255)
                         : Colors.white,
                     elevation: 3,
                     shape: RoundedRectangleBorder(
@@ -101,13 +101,24 @@ class _VegetableIngredientsScreenState
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        vegetable,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: isSelected ? Colors.white : Colors.black,
-                        ),
+                      child: Row(
+                        children: [
+                          Checkbox(
+                            value: isSelected,
+                            onChanged: (_) {
+                              _onVegetablesSelected(vegetable);
+                            },
+                            activeColor: Colors.blue,
+                          ),
+                          Text(
+                            vegetable,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: isSelected ? Colors.black : Colors.black,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

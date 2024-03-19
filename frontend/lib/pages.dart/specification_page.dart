@@ -48,6 +48,11 @@ class _SpecPageState extends State<SpecPage> {
 
   void saveUserIn() {}
 
+  double _height = 0.0;
+  double _weight = 0.0;
+  int _age = 0;
+  String _selectedGender = 'Male';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,101 +65,158 @@ class _SpecPageState extends State<SpecPage> {
         ),
         backgroundColor: Colors.yellow,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 20,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              const SizedBox(height: 10),
+              const Center(
+                child: Text(
+                  "Select Your Allergies",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
                   ),
-                  const Center(
-                    child: Text(
-                      "Select Your Allergies",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Column(
-                    children: availableSpecification.map((subj) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 6),
-                        child: Card(
-                          elevation: 3,
-                          color: Colors.grey[200], // Grey color for card
-                          child: CheckboxListTile(
-                            contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 20),
-                            value: subj["isChecked"],
-                            title: Text(
-                              subj["name"],
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            subtitle: Text(
-                              subj["description"],
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey[600],
-                              ),
-                            ),
-                            onChanged: (newValue) {
-                              setState(() {
-                                subj["isChecked"] = newValue;
-                              });
-                            },
+                ),
+              ),
+              const SizedBox(height: 10),
+              Column(
+                children: availableSpecification.map((subj) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 6),
+                    child: Card(
+                      elevation: 3,
+                      color: Colors.grey[200], // Grey color for card
+                      child: CheckboxListTile(
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 20),
+                        value: subj["isChecked"],
+                        title: Text(
+                          subj["name"],
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      );
-                    }).toList(),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Wrap(
-                    children: availableSpecification.map((subj) {
-                      if (subj["isChecked"] == true) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 5, bottom: 10),
-                          child: Chip(
-                            label: Text(
-                              subj["name"],
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                            backgroundColor: Colors.yellow,
+                        subtitle: Text(
+                          subj["description"],
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey[600],
                           ),
-                        );
-                      }
-                      return Container();
-                    }).toList(),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Center(
-                    child: CustomSaveButton(
-                      onTap: saveUserIn,
+                        ),
+                        onChanged: (newValue) {
+                          setState(() {
+                            subj["isChecked"] = newValue;
+                          });
+                        },
+                      ),
                     ),
+                  );
+                }).toList(),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              // const Divider(height: 5),
+              const SizedBox(height: 10),
+              const Center(
+                child: Text(
+                  " Height,Weight & Age",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
                   ),
+                ),
+              ),
+              Wrap(
+                children: availableSpecification.map((subj) {
+                  if (subj["isChecked"] == true) {}
+                  return Container();
+                }).toList(),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Height (cm)',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    _height = double.tryParse(value) ?? 0.0;
+                  });
+                },
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Weight (kg)',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    _weight = double.tryParse(value) ?? 0.0;
+                  });
+                },
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Age (years)',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    _age = int.tryParse(value) ?? 0;
+                  });
+                },
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Radio<String>(
+                    value: 'Male',
+                    groupValue: _selectedGender,
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedGender = value!;
+                      });
+                    },
+                  ),
+                  const Text('Male'),
+                  Radio<String>(
+                    value: 'Female',
+                    groupValue: _selectedGender,
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedGender = value!;
+                      });
+                    },
+                  ),
+                  const Text('Female'),
                 ],
               ),
-            ),
+              const SizedBox(height: 20),
+              Center(
+                child: CustomSaveButton(
+                  onTap: saveUserIn,
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -172,13 +234,13 @@ class CustomSaveButton extends StatelessWidget {
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.yellow,
-        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 150, vertical: 15),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
         ),
       ),
       child: const Text(
-        'Save Changes',
+        'Save',
         style: TextStyle(
           color: Colors.black,
           fontSize: 16,
