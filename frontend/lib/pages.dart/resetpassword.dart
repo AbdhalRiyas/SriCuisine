@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages.dart/login.dart';
 
 class ResetPassword extends StatelessWidget {
   @override
@@ -81,7 +82,10 @@ class ResetPassword extends StatelessWidget {
                     child: MaterialButton(
                       minWidth: double.infinity,
                       height: 60,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => LoginPage()));
+                      },
                       color: Color(0xff0095FF),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
@@ -100,7 +104,7 @@ class ResetPassword extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
 
 
                 // Container(

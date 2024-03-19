@@ -156,14 +156,16 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
 
+                const SizedBox(height: 5),
+
                 // login page down image
 
                 Container(
                   padding: EdgeInsets.only(top: 100),
-                  height: 200,
+                  height: 180,
                   decoration: const BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("images/login.png"),
+                          image: AssetImage("images/foodPan.jpg"),
                           fit: BoxFit.fitHeight)),
                 )
               ],
