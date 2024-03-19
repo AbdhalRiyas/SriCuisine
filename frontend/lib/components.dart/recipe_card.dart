@@ -6,14 +6,12 @@ class RecipeCard extends StatelessWidget {
   final String calorie;
   final String cookTime;
   final String thumbnailUrl;
-  final Recipe recipes;
   RecipeCard({
     required this.title,
     required this.cookTime,
     required this.calorie,
     required this.thumbnailUrl,
     required Recipe recipe,
-    required this.recipes,
   });
   @override
   Widget build(BuildContext context) {
@@ -55,7 +53,6 @@ class RecipeCard extends StatelessWidget {
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 30,
-                  fontFamily: 'Times New Roman',
                 ),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,

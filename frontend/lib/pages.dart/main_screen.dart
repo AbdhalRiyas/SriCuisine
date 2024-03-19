@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages.dart/available_ingredients_screen.dart';
 import 'package:flutter_application_1/pages.dart/home_page.dart';
@@ -31,26 +32,16 @@ class _MainScreen extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.yellow,
-      //   title: const Row(
-      //       mainAxisAlignment: MainAxisAlignment.center,
-      //       children: [
-      //         Icon(Icons.restaurant),
-      //         SizedBox(width: 10),
-      //         Text('SriCuisine')
-      //       ]),
-      // ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: Container(
-        color: Colors.black,
+        color: Colors.grey.shade900,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: GNav(
             gap: 15,
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.grey.shade900,
             color: Colors.yellow,
             activeColor: Colors.black,
             tabBackgroundColor: Colors.yellow.shade100,
@@ -65,7 +56,7 @@ class _MainScreen extends State<MainScreen> {
                 text: 'Recipes',
               ),
               GButton(
-                icon: Icons.shopping_cart,
+                icon: CupertinoIcons.square_grid_2x2_fill,
                 text: 'Ingredients',
               ),
               GButton(

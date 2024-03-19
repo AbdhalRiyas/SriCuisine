@@ -22,7 +22,8 @@ class _Recipes extends State<RecipesPage> {
               Text('Recommended Recipes')
             ]),
       ), 
-      body: ListView.builder(
+      body: 
+      ListView.builder(
         itemCount: recipes.length,
         itemBuilder: (context, index) {
           return GestureDetector(
@@ -31,14 +32,13 @@ class _Recipes extends State<RecipesPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => RecipeDetailPage(
-                    recipe: recipes[index], title: ("${recipes[index].name}"), thumbnailUrl: ("${recipes[index].image}"), calorie: ("${recipes[index].cal}"), cookTime: ("${recipes[index].time}"), servings: ("${recipes[index].servings}"), ingredients: ("${recipes[index].ingredients}"), instructions: ("${recipes[index].instructions}")
+                    recipe: recipes[index],
                   ),
                 ),
               );
             },
             child: RecipeCard(
               recipe: recipes[index],
-              recipes: recipes[index],
               title: ("${recipes[index].name}"),
               thumbnailUrl: ("${recipes[index].image}"),
               calorie: ("${recipes[index].cal}"),

@@ -6,6 +6,8 @@ class Recipe {
   final int? servings;
   final String? ingredients;
   final String? instructions;
+  final String? allergens;
+  final String? course;
 
   Recipe({
     this.name,
@@ -15,13 +17,15 @@ class Recipe {
     this.servings,
     this.ingredients,
     this.instructions,
+    this.allergens,
+    this.course,
   });
 }
 
 final List<Recipe> recipes = [
   Recipe(
     name: "Spicy Ramen Noodles",
-   // image: "https://c4.wallpaperflare.com/wallpaper/373/952/839/wooden-spoon-condiments-background-wallpaper-preview.jpg",
+    // image: "https://c4.wallpaperflare.com/wallpaper/373/952/839/wooden-spoon-condiments-background-wallpaper-preview.jpg",
     cal: 120,
     time: 15,
     servings: 5,
@@ -29,6 +33,8 @@ final List<Recipe> recipes = [
         "1 pack of ramen noodles, 1/2 cup of chopped vegetables, 1/4 cup of soy sauce, 1/4 cup of hot sauce, 1/4 cup of vinegar, 1/4 cup of sugar, 1/4 cup of water, 1/4 cup of oil, 1/4 cup of chopped green onions, 1/4 cup of chopped cilantro, 1/4 cup of chopped peanuts, 1/4 cup of chopped mushrooms, 1/4 cup of chopped tofu, 1/4 cup of chopped chicken, 1/4 cup of chopped beef, 1/4 cup of chopped pork, 1/4 cup of chopped shrimp, 1/4 cup of chopped fish, 1/4 cup of chopped crab, 1/4 cup of chopped lobster, 1/4 cup of chopped scallops, 1/4 cup of chopped clams, 1/4 cup of chopped oysters, 1/4 cup of chopped mussels, 1/4 cup of chopped squid, 1/4 cup of chopped octopus, 1/4 cup of chopped snails, 1/4 cup of chopped frogs, 1/4 cup of chopped turtles, 1/4 cup of chopped alligators, 1/4 cup of chopped lizards, 1/4 cup of chopped snakes, 1/4 cup of chopped birds, 1/4 cup of chopped bats, 1/4 cup of chopped rats, 1/4 cup of chopped mice, 1/4 cup of chopped rabbits, 1/4 cup of chopped squirrels, 1/4 cup of chopped chipmunks, 1/4 cup of chopped beavers, 1/4 cup of chopped otters, 1/4 cup of chopped skunks, 1/4 cup of chopped raccoons, 1/4 cup of chopped foxes, 1/4 cup of chopped wolves, 1/4 cup of chopped bears, 1/4 cup of chopped lions, 1/4 cup of chopped tigers, 1/4 cup of chopped leopards, 1/4 cup of chopped cheetahs, 1/4 cup of chopped jaguars, 1/4 cup of chopped panthers, 1/4 cup of chopped cougars",
     instructions:
         "1. Boil the ramen noodles in a pot of water for 3 minutes. 2. Drain the water from the pot. 3. Add the chopped vegetables to the pot. 4. Add the soy sauce, hot sauce, vinegar, sugar, and water to the pot. 5. Cook the ingredients in the pot for 5 minutes. 6. Add the oil to the pot. 7. Cook the ingredients in the pot for 5 minutes. 8. Add the green onions, cilantro, and peanuts to the pot. 9. Cook the ingredients in the pot for 5 minutes. 10. Add the mushrooms, tofu, chicken, beef, pork, shrimp, fish, crab, lobster, scallops, clams, oysters, mussels, squid, octopus, snails, frogs, turtles, alligators, lizards, snakes, birds, bats, rats, mice, rabbits, squirrels, chipmunks, beavers, otters, skunks, raccoons, foxes, wolves, bears, lions, tigers, leopards, cheetahs, jaguars, panthers, and cougars to the pot. 11. Cook the ingredients in the pot for 5 minutes. 12. Serve the spicy ramen noodles in a bowl.",
+    allergens: "Soy, Peanuts, Shellfish, Fish, Wheat",
+    course: "Main Dish",
   ),
   Recipe(
       name: "Beef Steak",
