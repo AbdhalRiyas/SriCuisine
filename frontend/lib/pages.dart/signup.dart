@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages.dart/login.dart';
+import 'package:flutter_application_1/pages.dart/specification_page.dart';
 
 class SignupPage extends StatelessWidget {
   @override
@@ -84,7 +85,8 @@ class SignupPage extends StatelessWidget {
                   minWidth: double.infinity,
                   height: 60,
                   onPressed: () {
-
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => SpecPage()));
                   },
                   color: Color(0xff0095FF),
                   elevation: 0,

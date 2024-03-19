@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages.dart/main_screen.dart';
 import 'package:flutter_application_1/pages.dart/otpverify.dart';
 import 'package:flutter_application_1/pages.dart/signup.dart';
 
@@ -107,7 +108,10 @@ class LoginPage extends StatelessWidget {
                     child: MaterialButton(
                       minWidth: double.infinity,
                       height: 60,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => MainScreen()));
+                      },
                       color: Color(0xff0095FF),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
