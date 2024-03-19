@@ -109,8 +109,10 @@ class LoginPage extends StatelessWidget {
                       minWidth: double.infinity,
                       height: 60,
                       onPressed: () {
-                        Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => MainScreen()));
+                        Navigator.pushAndRemoveUntil(context,
+                              MaterialPageRoute(builder: (context) => MainScreen()),
+                                (Route<dynamic> route) => false,
+                        );
                       },
                       color: Color(0xff0095FF),
                       elevation: 0,
