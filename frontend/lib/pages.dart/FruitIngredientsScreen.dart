@@ -97,13 +97,13 @@ class _FruitIngredientsScreenState extends State<FruitIngredientsScreen> {
               itemBuilder: (context, index) {
                 final fruit = _fruits[index];
                 final isSelected = _selectedFruits.contains(fruit);
-                return GestureDetector(
+                return InkWell(
                   onTap: () {
                     _onFruitsSelected(fruit);
                   },
                   child: Card(
                     color: isSelected
-                        ? const Color.fromARGB(255, 180, 180, 117)
+                        ? const Color.fromARGB(174, 255, 255, 255)
                         : Colors.white,
                     elevation: 3,
                     shape: RoundedRectangleBorder(
@@ -115,13 +115,24 @@ class _FruitIngredientsScreenState extends State<FruitIngredientsScreen> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        fruit,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: isSelected ? Colors.white : Colors.black,
-                        ),
+                      child: Row(
+                        children: [
+                          Checkbox(
+                            value: isSelected,
+                            onChanged: (_) {
+                              _onFruitsSelected(fruit);
+                            },
+                            activeColor: Colors.blue,
+                          ),
+                          Text(
+                            fruit,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: isSelected ? Colors.black : Colors.black,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

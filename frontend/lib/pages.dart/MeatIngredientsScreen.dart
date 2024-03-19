@@ -46,10 +46,11 @@ class _MeatIngredientsScreenState extends State<MeatIngredientsScreen> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AvailableIngredientsScreen(),
-                ));
+              context,
+              MaterialPageRoute(
+                builder: (context) => AvailableIngredientsScreen(),
+              ),
+            );
           },
         ),
       ),
@@ -75,13 +76,13 @@ class _MeatIngredientsScreenState extends State<MeatIngredientsScreen> {
               itemBuilder: (context, index) {
                 final meat = _meats[index];
                 final isSelected = _selectedMeats.contains(meat);
-                return GestureDetector(
+                return InkWell(
                   onTap: () {
                     _onMeatsSelected(meat);
                   },
                   child: Card(
                     color: isSelected
-                        ? const Color.fromARGB(255, 180, 180, 117)
+                        ? const Color.fromARGB(174, 255, 255, 255)
                         : Colors.white,
                     elevation: 3,
                     shape: RoundedRectangleBorder(
@@ -93,13 +94,24 @@ class _MeatIngredientsScreenState extends State<MeatIngredientsScreen> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        meat,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: isSelected ? Colors.white : Colors.black,
-                        ),
+                      child: Row(
+                        children: [
+                          Checkbox(
+                            value: isSelected,
+                            onChanged: (_) {
+                              _onMeatsSelected(meat);
+                            },
+                            activeColor: Colors.blue,
+                          ),
+                          Text(
+                            meat,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: isSelected ? Colors.black : Colors.black,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

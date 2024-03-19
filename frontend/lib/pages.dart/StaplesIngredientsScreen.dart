@@ -103,63 +103,72 @@ class _StaplesIngredientsScreenState extends State<StaplesIngredientsScreen> {
               itemCount: _staples.length,
               itemBuilder: (context, index) {
                 final staple = _staples[index];
-                return Card(
-                  elevation: 3,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  margin: const EdgeInsets.symmetric(
-                    vertical: 4.0,
-                    horizontal: 8.0,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Checkbox(
-                              value: _selectedStaples
-                                  .any((item) => item['staple'] == staple),
-                              onChanged: (selected) {
-                                if (selected != null && selected) {
-                                  _onStaplesSelected(staple);
-                                } else {
-                                  setState(() {
-                                    _selectedStaples.removeWhere(
-                                        (item) => item['staple'] == staple);
-                                  });
-                                }
-                              },
-                            ),
-                            Text(
-                              staple,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                return GestureDetector(
+                  onTap: () {
+                    _onStaplesSelected(staple);
+                  },
+                  child: Card(
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 4.0,
+                      horizontal: 8.0,
+                    ),
+                    color:
+                        _selectedStaples.any((item) => item['staple'] == staple)
+                            ? const Color.fromARGB(174, 255, 255, 255)
+                            : Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Checkbox(
+                                value: _selectedStaples
+                                    .any((item) => item['staple'] == staple),
+                                onChanged: (selected) {
+                                  if (selected != null && selected) {
+                                    _onStaplesSelected(staple);
+                                  } else {
+                                    setState(() {
+                                      _selectedStaples.removeWhere(
+                                          (item) => item['staple'] == staple);
+                                    });
+                                  }
+                                },
                               ),
-                            ),
-                          ],
-                        ),
-                        if (_selectedStaples
-                            .any((item) => item['staple'] == staple))
-                          TextButton(
-                            onPressed: () {
-                              _onStaplesSelected(staple);
-                            },
-                            child: Text(
-                              _selectedStaples
-                                  .firstWhere((item) =>
-                                      item['staple'] == staple)['date']
-                                  .toString()
-                                  .substring(0, 10),
-                              style: const TextStyle(
-                                color: Colors.blue,
+                              Text(
+                                staple,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
+                            ],
                           ),
-                      ],
+                          if (_selectedStaples
+                              .any((item) => item['staple'] == staple))
+                            TextButton(
+                              onPressed: () {
+                                _onStaplesSelected(staple);
+                              },
+                              child: Text(
+                                _selectedStaples
+                                    .firstWhere((item) =>
+                                        item['staple'] == staple)['date']
+                                    .toString()
+                                    .substring(0, 10),
+                                style: const TextStyle(
+                                  color: Colors.blue,
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
                     ),
                   ),
                 );
