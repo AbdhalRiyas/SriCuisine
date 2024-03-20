@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Pages.dart/otpverify.dart';
+import 'package:flutter_application_1/pages.dart/otpverify.dart';
 import 'package:flutter_application_1/pages.dart/main_screen.dart';
 import 'package:flutter_application_1/pages.dart/signup.dart';
 

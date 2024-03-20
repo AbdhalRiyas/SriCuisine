@@ -1,165 +1,128 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages.dart/resetpassword.dart';
 
-class OtpPage extends StatelessWidget {
+class OtpPage extends StatefulWidget {
+  @override
+  State<OtpPage> createState() => _OtpPageState();
+}
+
+class _OtpPageState extends State<OtpPage> {
+  final _formfield = GlobalKey<FormState>();
+  final otpnumberController = TextEditingController();
+  bool passToggle = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        //brightness: Brightness.light,
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            size: 20,
-            color: Colors.black,
+        appBar: AppBar(
+          title: Text("Otp Page"),
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.white,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              size: 20,
+              color: Colors.black,
+            ),
           ),
         ),
-      ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
-        height: MediaQuery.of(context).size.height,
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Expanded(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            child: Form(
+                key: _formfield,
                 child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    const Text(
-                      "Forgot Your Password?",
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Enter your received OTP,",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.grey[700],
-                      ),
-                    )
-                  ],
-                ),
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Image.asset("images/whiteLogo.jpg",
+                    // height: 150,
+                    // width: 200,
+                    // ),
+                    const SizedBox(height: 10),
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
-                  child: Column(
-                    children: <Widget>[
-                      inputFile(label: "OTP"),
-                      // inputFile(label: "Password", obscureText: true)
-                    ],
-                  ),
-                ),
+                    // Username Validate part
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
-                  child: Container(
-                    padding: EdgeInsets.only(top: 2, left: 2),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        border: const Border(
-                          bottom: BorderSide(color: Colors.black),
-                          top: BorderSide(color: Colors.black),
-                          left: BorderSide(color: Colors.black),
-                          right: BorderSide(color: Colors.black),
-                        )),
-                    child: MaterialButton(
-                      minWidth: double.infinity,
-                      height: 60,
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ResetPassword()));
-                      },
-                      color: Color(0xff0095FF),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: const Text(
-                        "Confirm",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
-                          color: Colors.white,
+                    TextFormField(
+                        keyboardType: TextInputType.number,
+                        controller: otpnumberController,
+                        decoration: const InputDecoration(
+                          labelText: "OtpNumber",
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.numbers)
                         ),
+                        validator: (value) {
+                          bool otpNumberValid =
+                              RegExp(r'^').hasMatch(value!);
+
+                          if (value.isEmpty) {
+                            return "Enter recieved OtpNumber";
+
+                          } else if (!otpNumberValid) {
+                            return "Enter Valid OtpNumber";
+                          }
+                        }),
+
+                    const SizedBox(
+                      height: 20,
+                    ),
+
+                    // Password Validate part
+
+                    
+
+                    const SizedBox(height: 30),
+
+                    InkWell(
+                      onTap: () {
+                        if (_formfield.currentState!.validate()) {
+                          print("Data Addeed Successfully");
+                          otpnumberController.clear();
+
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext)=>ResetPassPage()));
+                        }
+                         
+                      },
+
+                      //button editing
+
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(10)),
+                        child:const  Center(
+                            child: Text(
+                          " Confirm",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )),
                       ),
                     ),
-                  ),
-                ),
 
-                const SizedBox(height: 15),
+                    const SizedBox(height: 25,),
 
-                // Container(
-                //   padding: const EdgeInsets.only(top: 100),
-                //   height: 200,
-                //   decoration: const BoxDecoration(
-                //     image: DecorationImage(
-                //         image: AssetImage(""), fit: BoxFit.fitHeight),
-                //   ),
-                // )
-              ],
-            ))
-          ],
-        ),
-      ),
-    );
+                  ],
+                )
+              ),
+          ),
+        )
+        
+      );
   }
 }
+       
 
-// creating a widget for text field
 
-Widget inputFile({label, obscureText = false}) {
-  //label text style edit
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        label,
-        style: const TextStyle(
-            fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
-      ),
 
-      const SizedBox(height: 5), //text and text field between space
-
-      //text fied edited stuff
-      TextField(
-        obscureText: obscureText,
-        decoration: const InputDecoration(
-            contentPadding: EdgeInsets.symmetric(
-                vertical: 0, horizontal: 10), //text fild size
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color:
-                      Color.fromARGB(255, 175, 165, 165) // display border color
-                  ),
-            ),
-            border: OutlineInputBorder(
-                borderSide: BorderSide(
-                    color: Color.fromARGB(
-                        255, 172, 151, 151)) //when user clicked popup color
-                )),
-      ),
-
-      const SizedBox(
-        height: 10,
-      ) //text field between space
-    ],
-  );
-}
+                   

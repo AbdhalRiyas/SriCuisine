@@ -1,15 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Pages.dart/login.dart';
-import 'package:flutter_application_1/Pages.dart/otpverify.dart';
-import 'package:flutter_application_1/pages.dart/signup.dart';
-
+import 'package:flutter_application_1/pages.dart/login.dart';
 class SignupPage extends StatefulWidget {
   @override
-  State<SignupPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<SignupPage> {
+class _SignupPageState extends State<SignupPage> {
   final _formfield = GlobalKey<FormState>();
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
@@ -46,10 +43,10 @@ class _LoginPageState extends State<SignupPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Image.asset("images/whiteLogo.jpg",
-                    // height: 150,
-                    // width: 200,
-                    // ),
+                    Image.asset("images/whiteLogo.jpg",
+                    height: 150,
+                    width: 200,
+                    ),
                     const SizedBox(height: 10),
 
                     // Username Validate part
@@ -185,7 +182,7 @@ class _LoginPageState extends State<SignupPage> {
                           onTap: () {
                             Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                    builder: (BuildContext) => Login()));
+                                    builder: (BuildContext) => LoginPage()));
                           },
                         )
                       ],
