@@ -89,20 +89,16 @@ class _BMIPageScreenState extends State<BMIPageScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.yellow,
-        title: const Text(
-          'BMI Calculator',
+        title:
+         const Text(
+          'BMI & Calculator',
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomePage(),
-              ),
-            );
+            Navigator.pop(context);
           },
         ),
       ),

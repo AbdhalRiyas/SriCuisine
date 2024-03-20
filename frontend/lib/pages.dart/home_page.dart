@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(32.0),
                       ),
                     ),
-                    child: const Text('BMI and Calorie Intake Calculator'),
+                    child: const Text('BMI & Calorie Intake Calculator'),
                   ),
                 ),
                 const SizedBox(height: 20),
