@@ -91,3 +91,93 @@ const createIngredient = asyncHandler(async (req, res) => {
 
   logger.trace("[ingredientController] :: createIngredient() : End");
 });
+
+// @desc    Update an ingredient
+// @route   PUT /api/v1/ingredients/:id
+// @access  Public
+const updateIngredient = asyncHandler(async (req, res) => {
+  const { name, expiryDate } = req.body;
+  const AppError = require("../utils/app.error"); // Import here
+
+  logger.trace("[ingredientController] :: updateIngredient() : Start");
+
+  try {
+    const ingredient = await Ingredient.findById(req.params.id);
+
+    if (!ingredient) {
+      logger.warn(
+        `[ingredientController] :: updateIngredient() : Ingredient with ID ${req.params.id} not found`
+      );
+      throw new AppError("Ingredient not found", 404); // Throw AppError
+    }
+
+    ingredient.name = name;
+    ingredient.expiryDate = expiryDate;
+
+    await ingredient.save();
+
+    res.status(200).json(ingredient);
+    logger.info(
+      `[ingredientController] :: updateIngredient() : Ingredient ${ingredient._id} updated successfully`
+    );
+  } catch (error) {
+    logger.error(
+      `[ingredientController] :: updateIngredient() : Error updating ingredient: ${error.message}`
+    );
+
+    // Determine appropriate error response (assuming AppError structure)
+    if (error instanceof AppError) {
+      res.status(error.statusCode).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: "Server Error" });
+    }
+  }
+
+  logger.trace("[ingredientController] :: updateIngredient() : End");
+});
+
+// @desc    Delete an ingredient
+// @route   DELETE /api/v1/ingredients/:id
+// @access  Public
+const deleteIngredient = asyncHandler(async (req, res) => {
+  logger.trace("[ingredientController] :: deleteIngredient() : Start");
+
+  try {
+    const ingredient = await Ingredient.findById(req.params.id);
+
+    if (!ingredient) {
+      logger.warn(
+        `[ingredientController] :: deleteIngredient() : Ingredient with ID ${req.params.id} not found`
+      );
+      throw new AppError("Ingredient not found", 404); // Throw AppError
+    }
+
+    await ingredient.remove();
+
+    res.status(200).json({ message: "Ingredient deleted successfully" });
+    logger.info(
+      `[ingredientController] :: deleteIngredient() : Ingredient ${ingredient._id} deleted successfully`
+    );
+  } catch (error) {
+    logger.error(
+      `[ingredientController] :: deleteIngredient() : Error deleting ingredient: ${error.message}`
+    );
+
+    // Determine appropriate error response (assuming AppError structure)
+    if (error instanceof AppError) {
+      res.status(error.statusCode).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: "Server Error" });
+    }
+  }
+
+  logger.trace("[ingredientController] :: deleteIngredient() : End");
+});
+
+module.exports = {
+  getIngredients,
+  createIngredient,
+  updateIngredient,
+  deleteIngredient,
+};
+
