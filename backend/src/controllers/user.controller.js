@@ -1,114 +1,113 @@
 const bcrypt = require('bcryptjs')
-const asyncHanlder = require('express-async-handler')
+const asyncHandler = require('express-async-handler')
 const User = require('../models/user.model')
 const i18n = require("i18n");
-const logger = require('../utils/log4jsutil.js');
+const logger = require('../utils/log4jsutil');
 const AppError = require('../utils/app.error');
-const moment = require('moment');
+const Status = require('../utils/status.js');
+const constants = require('../utils/constants.js')
+const mongoose = require('mongoose');
+const path = require('path');
+const mime = require('mime-types')
+const { v1: uuidv1 } = require('uuid');
 const config = require('config');
-const basicUtil = require("../utils/basic.util");
-const UserPasswordResetModel = require('../models/userPasswordReset.model');
-const Status = require('../utils/status');
-const mailUtil = require('../utils/mail.util');
-const s3Util = require('../utils/s3.util.js');
-const constants = require("./../utils/constants");
+const basicUtil = require("../utils/basic.util.js");
 const Alluserpasswords = require('../models/alluserpasswords.model');
 
-
 // @desc    Authenticate a user
-// @route   POST /api/v1/auth
+// @route   GET /api/v1/users
 // @access  Public
-const authenticate = asyncHanlder(async (req, res) => {
-    logger.trace("[authController] :: authenticate() : Start");
 
-    const { userName, password} = req.body
-    //Checks for username
-    let user = await User.findOne({ userName })
-      
-    if (user && (await bcrypt.compare(password, user.password))) {
-            if (user.profileImage) {
-                try {
-                    user.profileImage = await s3Util.generateProfileImagePresignedURL(user.profileImage);
-                }
-                catch (err) {
-                }
-            }
-
-            const authresponse = await User.findById(user._id).select('-password');
-            res.status(200).json({
-                user: authresponse,
-                status: constants.USER_STATUS.ACTIVE
-            })
-        
-    } else {
-        logger.error("[authController] :: authenticate() : Unauthorized user");
-        throw new AppError(401, i18n.__("UNAUTHORIZED"));
-    }
-
-    logger.trace("[authController] :: authenticate() : End");
-})
+const getUsers = asyncHandler(async (req, res) => {
+    logger.trace("userController] :: getUsers() : Start"); 
+    const users = await User.find().select('-password');
+    res.status(200).json(users);
+    logger.trace("[userController] :: getUsers() : End"); 
+});
 
 
+// @desc    Get user by ID
+// @route   GET /api/v1/users/:id
+const getUserById = asyncHandler(async (req, res) => {
+    logger.trace("[userController] :: getUserById() : Start");
 
+    const userId = req.body.userId 
 
-const requestPasswordReset = asyncHanlder(async (req, res) => {
-    logger.trace("[authController] :: requestPasswordReset() : Start");
-    try{
-        userName = req.body.userName;
-    if (!userName) {
-        logger.error("[authController] :: requestPasswordReset() : UserName is null");
-        throw new AppError(400, i18n.__("BAD_REQUEST"))
-    }
-
-    const user = await User.findOne({ userName });
+    const user = await User.findById(userId).select('-password');
 
     if (!user) {
-        logger.error("[authController] :: requestPasswordReset() : No users with the given userName");
-        throw new AppError(404, i18n.__("USER_NOT_FOUND"))
+        logger.error("[userController] :: getUserById() : User not found");
+        throw new AppError(404, i18n.__("ERROR_USER_NOT_FOUND"));
     }
 
-    let currentTime = moment();
-    let passwordLinkValidTime = config.get('PasswordLinkValidPeriod').replace("h", "");
-    const expiryTime = moment(currentTime).add(passwordLinkValidTime, 'hours').utc().format('YYYY-MM-DD HH:mm');
-    const otp = basicUtil.generateOTP();
-    
-    const userPasswordResetModel = await UserPasswordResetModel.create({
-        user: user._id,
-        resetExpiryTime: expiryTime,
-        otp: otp 
-    });
 
-    
-    const mailOptions = {
-        to: user.email,
-        subject: "Sri Cuisine password reset",
-        html: `
-            <p>Hi ${user.userName}, </p>
-            <p>You have requested to change your Sri Cuisine password. 
-               Please enter the following OTP to reset your password:</p>
-            <p>OTP: ${otp}</p> 
-            <p>This OTP is valid for 24 hours.</p> 
-            <p>Thank You,</p>
-            <p>Sri Cuisine</p>`
-    };
-
-    const mailSent = await mailUtil.sendMail(mailOptions);
-    logger.debug("[authController] :: requestPasswordReset() : mailSent : {" + mailSent + " }");
-
-    if (!mailSent) {
-        throw new AppError(500, i18n.__("EMAIL_SENDING_FAILED"));
+    if (req.user.id !== user.id.toString() && req.user.role !== 'admin') {
+        logger.error("[userController] :: getUserById() : Unauthorized access");
+        throw new AppError(401, i18n.__("ERROR_UNAUTHORIZED")); 
     }
 
-    res.status(200).json({ payload: null, status: Status.getSuccessStatus(i18n.__("SUCCESS")) });
+    res.status(200).json(user);
+    logger.trace("[userController] :: getUserById() : End"); 
+});
 
-    }catch{
-        logger.error("[authController] :: requestPasswordReset() : error : " + error);
-        res.status(error.statusCode || 500).json({ message: error.message });  
+// @desc    create a user
+// @route   POST /api/v1/users
+// @access  Public
+const createUser = asyncHandler(async (req, res) => {
+    logger.trace("[userController] :: createUser() : Start");
+
+    const { userName, email, password } = req.body
+
+    if ( !userName || !email || !password ) {
+        logger.error("[userController] :: createUser() : Missing required field");
+        throw new AppError(400, i18n.__("ERROR_MISSING_REQUIRED_FIELDS"))
     }
-    
 
-    logger.trace("[authController] :: requestPasswordReset() : End");
+
+    const userNameRegex = /^[^\s]{4,100}$/;
+    if (!userNameRegex.test(userName)) {
+        logger.error("[userController] :: createUser() : Invalid username format");
+        throw new AppError(400, i18n.__("ERROR_INVALID_USERNAME_FORMAT"));
+    }
+
+    const userExists = await User.findOne({ userName })
+
+    if (userExists) {
+        logger.error("[userController] :: createUser() : Username already exists");
+        throw new AppError(400, i18n.__("ERROR_USER_ALREADY_EXISTS"))
+    }
+
+    const emailRegex = /^([a-zA-Z0-9_\.-]+)@([a-zA-Z0-9_\.-]+)\.([a-zA-Z]{2,6})$/;
+
+    if (!emailRegex.test(email)) {
+        logger.error("[userController] :: createUser() : Invalid email format");
+        throw new AppError(400, i18n.__("ERROR_INVALID_EMAIL_FORMAT"));
+    }
+
+    const salt = await bcrypt.genSalt(10)
+    const hashsedPassword = await bcrypt.hash(password, salt)
+
+    //Create user
+    const user = await User.create({
+        userName: req.body.userName,
+        email: req.body.email,
+        password: hashsedPassword,
+        status: "NEW"
+    })
+
+    //If a new user is created, return user
+    if (user) {
+        await Alluserpasswords.create({ User: user._id, hashedPasswords: [hashsedPassword] });
+        res.status(201).json(user)
+    } else {
+        logger.error("[userController] :: createUser() : User is not created properly");
+        throw new AppError(500, i18n.__("APPLICATION_ERROR"))
+    }
+
+    logger.trace("[userController] :: createUser() : End");
 })
+
+
 // @desc    edit a user
 // @route   PUT /api/v1/users/:id
 // @access  Private
