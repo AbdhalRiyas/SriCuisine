@@ -54,72 +54,52 @@ class _MeatIngredientsScreenState extends State<MeatIngredientsScreen> {
           },
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (_selectedMeats.isNotEmpty)
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              color: Colors.blue.withOpacity(0.2),
-              child: Text(
-                'Selected Meats: ${_selectedMeats.join(",")}',
-                style: const TextStyle(
-                  color: Colors.blue,
-                  fontWeight: FontWeight.bold,
-                ),
+      body: Container(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Meats',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
             ),
-          const SizedBox(height: 16),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _meats.length,
-              itemBuilder: (context, index) {
-                final meat = _meats[index];
+            const SizedBox(height: 16),
+            Wrap(
+              alignment: WrapAlignment.start,
+              spacing: 20.0,
+              runSpacing: 10.0,
+              children: _meats.map((meat) {
                 final isSelected = _selectedMeats.contains(meat);
-                return InkWell(
-                  onTap: () {
-                    _onMeatsSelected(meat);
-                  },
-                  child: Card(
-                    color: isSelected
-                        ? const Color.fromARGB(174, 255, 255, 255)
-                        : Colors.white,
-                    elevation: 3,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 4.0,
-                      horizontal: 8.0,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        children: [
-                          Checkbox(
-                            value: isSelected,
-                            onChanged: (_) {
-                              _onMeatsSelected(meat);
-                            },
-                            activeColor: Colors.blue,
-                          ),
-                          Text(
-                            meat,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: isSelected ? Colors.black : Colors.black,
-                            ),
-                          ),
-                        ],
+                return SizedBox(
+                  width: MediaQuery.of(context).size.width / 2 -
+                      30, // Adjust width as needed
+                  child: Row(
+                    children: [
+                      Checkbox(
+                        value: isSelected,
+                        onChanged: (_) {
+                          _onMeatsSelected(meat);
+                        },
+                        activeColor: Colors.blue,
                       ),
-                    ),
+                      Text(
+                        meat,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: isSelected ? Colors.black : Colors.black,
+                        ),
+                      ),
+                    ],
                   ),
                 );
-              },
+              }).toList(),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

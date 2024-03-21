@@ -8,7 +8,7 @@ class FruitIngredientsScreen extends StatefulWidget {
 
 class _FruitIngredientsScreenState extends State<FruitIngredientsScreen> {
   final List<String> _fruits = [
-    'Apples',
+    'Apple',
     'Avocado',
     'Banana',
     'Blueberry',
@@ -22,7 +22,9 @@ class _FruitIngredientsScreenState extends State<FruitIngredientsScreen> {
     'Grape',
     'Grapefruit',
     'Guava',
+    'Jackfruit',
     'Kiwi',
+    'Lemon',
     'Mandarine',
     'Mango',
     'Mangostan',
@@ -32,7 +34,7 @@ class _FruitIngredientsScreenState extends State<FruitIngredientsScreen> {
     'Papaya',
     'Passion fruit',
     'Peach',
-    'Pear',
+    'Pears',
     'Pineapple',
     'Pomegranate',
     'Rambutan',
@@ -68,79 +70,61 @@ class _FruitIngredientsScreenState extends State<FruitIngredientsScreen> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AvailableIngredientsScreen(),
-                ));
+              context,
+              MaterialPageRoute(
+                builder: (context) => AvailableIngredientsScreen(),
+              ),
+            );
           },
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (_selectedFruits.isNotEmpty)
-            Container(
-              padding: const EdgeInsets.all(8),
-              color: Colors.blue.withOpacity(0.2),
-              child: Text(
-                'Selected Fruits: ${_selectedFruits.join(",")}',
-                style: const TextStyle(
-                  color: Colors.blue,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Fruits',
+                style: TextStyle(
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-          const SizedBox(height: 16),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _fruits.length,
-              itemBuilder: (context, index) {
-                final fruit = _fruits[index];
-                final isSelected = _selectedFruits.contains(fruit);
-                return InkWell(
-                  onTap: () {
-                    _onFruitsSelected(fruit);
-                  },
-                  child: Card(
-                    color: isSelected
-                        ? const Color.fromARGB(174, 255, 255, 255)
-                        : Colors.white,
-                    elevation: 3,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 4.0,
-                      horizontal: 8.0,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        children: [
-                          Checkbox(
-                            value: isSelected,
-                            onChanged: (_) {
-                              _onFruitsSelected(fruit);
-                            },
-                            activeColor: Colors.blue,
+              SizedBox(height: 16),
+              // Wrap the list of fruits into two columns
+              Wrap(
+                spacing: 20.0,
+                runSpacing: 10.0,
+                children: _fruits.map((fruit) {
+                  final isSelected = _selectedFruits.contains(fruit);
+                  return SizedBox(
+                    width: MediaQuery.of(context).size.width / 2 - 30,
+                    child: Row(
+                      children: [
+                        Checkbox(
+                          value: isSelected,
+                          onChanged: (_) {
+                            _onFruitsSelected(fruit);
+                          },
+                          activeColor: Colors.blue,
+                        ),
+                        Text(
+                          fruit,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: isSelected ? Colors.black : Colors.black,
                           ),
-                          Text(
-                            fruit,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: isSelected ? Colors.black : Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ),
-                );
-              },
-            ),
+                  );
+                }).toList(),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
