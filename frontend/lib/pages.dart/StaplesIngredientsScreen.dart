@@ -71,111 +71,136 @@ class _StaplesIngredientsScreenState extends State<StaplesIngredientsScreen> {
           },
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (_selectedStaples.isNotEmpty)
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              color: Colors.blue.withOpacity(0.2),
-              child: Wrap(
-                spacing: 8.0,
-                runSpacing: 4.0,
-                children: _selectedStaples.map<Widget>((staple) {
-                  return Chip(
-                    label: Text(
-                      '${staple['staple']}',
-                      style: const TextStyle(color: Colors.blue),
-                    ),
-                    backgroundColor: Colors.blue.withOpacity(0.2),
-                    onDeleted: () {
-                      setState(() {
-                        _selectedStaples.removeWhere((item) => item == staple);
-                      });
-                    },
-                  );
-                }).toList(),
-              ),
-            ),
-          const SizedBox(height: 16),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _staples.length,
-              itemBuilder: (context, index) {
-                final staple = _staples[index];
-                return GestureDetector(
-                  onTap: () {
-                    _onStaplesSelected(staple);
-                  },
-                  child: Card(
-                    elevation: 3,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 4.0,
-                      horizontal: 8.0,
-                    ),
-                    color:
-                        _selectedStaples.any((item) => item['staple'] == staple)
-                            ? const Color.fromARGB(174, 255, 255, 255)
-                            : Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Checkbox(
-                                value: _selectedStaples
-                                    .any((item) => item['staple'] == staple),
-                                onChanged: (selected) {
-                                  if (selected != null && selected) {
-                                    _onStaplesSelected(staple);
-                                  } else {
-                                    setState(() {
-                                      _selectedStaples.removeWhere(
-                                          (item) => item['staple'] == staple);
-                                    });
-                                  }
-                                },
-                              ),
-                              Text(
-                                staple,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                          if (_selectedStaples
-                              .any((item) => item['staple'] == staple))
-                            TextButton(
-                              onPressed: () {
-                                _onStaplesSelected(staple);
-                              },
-                              child: Text(
-                                _selectedStaples
-                                    .firstWhere((item) =>
-                                        item['staple'] == staple)['date']
-                                    .toString()
-                                    .substring(0, 10),
-                                style: const TextStyle(
-                                  color: Colors.blue,
-                                ),
-                              ),
-                            ),
-                        ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (_selectedStaples.isNotEmpty)
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                color: Colors.blue.withOpacity(0.2),
+                child: Wrap(
+                  spacing: 8.0,
+                  runSpacing: 4.0,
+                  children: _selectedStaples.map<Widget>((staple) {
+                    return Chip(
+                      label: Text(
+                        '${staple['staple']}',
+                        style: const TextStyle(color: Colors.blue),
                       ),
+                      backgroundColor: Colors.blue.withOpacity(0.2),
+                      onDeleted: () {
+                        setState(() {
+                          _selectedStaples
+                              .removeWhere((item) => item == staple);
+                        });
+                      },
+                    );
+                  }).toList(),
+                ),
+              ),
+            const SizedBox(height: 16),
+            // Divide the checkboxes into two columns
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: _staples.asMap().entries.map<Widget>((entry) {
+                      final index = entry.key;
+                      final staple = entry.value;
+                      if (index % 2 == 0) {
+                        return _buildStapleCheckbox(staple);
+                      } else {
+                        return const SizedBox.shrink();
+                      }
+                    }).toList(),
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: _staples.asMap().entries.map<Widget>((entry) {
+                      final index = entry.key;
+                      final staple = entry.value;
+                      if (index % 2 != 0) {
+                        return _buildStapleCheckbox(staple);
+                      } else {
+                        return const SizedBox.shrink();
+                      }
+                    }).toList(),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStapleCheckbox(String staple) {
+    final selectedStaple = _selectedStaples.firstWhere(
+      (item) => item['staple'] == staple,
+      orElse: () => {'date': null},
+    );
+    return GestureDetector(
+      onTap: () {
+        _onStaplesSelected(staple);
+      },
+      child: Card(
+        elevation: 3,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        margin: const EdgeInsets.symmetric(
+          vertical: 4.0,
+          horizontal: 8.0,
+        ),
+        color: _selectedStaples.any((item) => item['staple'] == staple)
+            ? const Color.fromARGB(174, 255, 255, 255)
+            : Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Checkbox(
+                    value: _selectedStaples
+                        .any((item) => item['staple'] == staple),
+                    onChanged: (selected) {
+                      if (selected != null && selected) {
+                        _onStaplesSelected(staple);
+                      } else {
+                        setState(() {
+                          _selectedStaples
+                              .removeWhere((item) => item['staple'] == staple);
+                        });
+                      }
+                    },
+                  ),
+                  Text(
+                    staple,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                );
-              },
-            ),
+                ],
+              ),
+              if (selectedStaple['date'] != null)
+                Text(
+                  selectedStaple['date'].toString().substring(0, 10),
+                  style: const TextStyle(
+                    color: Colors.blue,
+                  ),
+                ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

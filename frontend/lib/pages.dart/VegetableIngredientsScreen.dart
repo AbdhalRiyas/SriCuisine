@@ -14,8 +14,8 @@ class _VegetableIngredientsScreenState
     'Raddish',
     'Cauliflower',
     'Broccoli',
-    'Egg-plant'
-        'Spinach',
+    'Egg-plant',
+    'Spinach',
     'Cucumber',
     'Bell Pepper',
     'Bitter-Gourd',
@@ -54,79 +54,60 @@ class _VegetableIngredientsScreenState
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AvailableIngredientsScreen(),
-                ));
+              context,
+              MaterialPageRoute(
+                builder: (context) => AvailableIngredientsScreen(),
+              ),
+            );
           },
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (_selectedVegetables.isNotEmpty)
-            Container(
-              padding: const EdgeInsets.all(8),
-              color: Colors.blue.withOpacity(0.2),
-              child: Text(
-                'Selected Vegetables: ${_selectedVegetables.join(",")}',
-                style: const TextStyle(
-                  color: Colors.blue,
-                  fontWeight: FontWeight.bold,
-                ),
+      body: Container(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Vegetables',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
             ),
-          const SizedBox(height: 16),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _vegetables.length,
-              itemBuilder: (context, index) {
-                final vegetable = _vegetables[index];
+            SizedBox(height: 16),
+            Wrap(
+              alignment: WrapAlignment.start,
+              spacing: 20.0,
+              runSpacing: 10.0,
+              children: _vegetables.map((vegetable) {
                 final isSelected = _selectedVegetables.contains(vegetable);
-                return InkWell(
-                  onTap: () {
-                    _onVegetablesSelected(vegetable);
-                  },
-                  child: Card(
-                    color: isSelected
-                        ? const Color.fromARGB(174, 255, 255, 255)
-                        : Colors.white,
-                    elevation: 3,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 4.0,
-                      horizontal: 8.0,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        children: [
-                          Checkbox(
-                            value: isSelected,
-                            onChanged: (_) {
-                              _onVegetablesSelected(vegetable);
-                            },
-                            activeColor: Colors.blue,
-                          ),
-                          Text(
-                            vegetable,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: isSelected ? Colors.black : Colors.black,
-                            ),
-                          ),
-                        ],
+                return SizedBox(
+                  width: MediaQuery.of(context).size.width / 2 -
+                      30, // Adjust width as needed
+                  child: Row(
+                    children: [
+                      Checkbox(
+                        value: isSelected,
+                        onChanged: (_) {
+                          _onVegetablesSelected(vegetable);
+                        },
+                        activeColor: Colors.blue,
                       ),
-                    ),
+                      Text(
+                        vegetable,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: isSelected ? Colors.black : Colors.black,
+                        ),
+                      ),
+                    ],
                   ),
                 );
-              },
+              }).toList(),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
