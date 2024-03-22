@@ -124,17 +124,19 @@ class _AvailableIngredientsScreenState
       setState(() {
         final existingIndex = _selectedIngredients
             .indexWhere((item) => item['name'] == ingredient);
-        if (existingIndex != -1) {
-          _selectedIngredients.removeAt(
-              existingIndex); // Deselect the ingredient if it's already selected
-        } else {
+        if (existingIndex == -1) {
+          // Add the ingredient if it's not already selected
           final Map<String, dynamic> ingredientMap = {
             'name': ingredient,
             'date': selectedDate,
           };
-          _selectedIngredients.add(
-              ingredientMap); // Select the ingredient if it's not already selected
+          _selectedIngredients.add(ingredientMap);
+        } else {
+          // Remove the ingredient if it's already selected
+          _selectedIngredients.removeAt(existingIndex);
         }
+        // Print the selected ingredients array
+        print(_selectedIngredients);
       });
     }
   }
@@ -237,15 +239,36 @@ class _AvailableIngredientsScreenState
                                   .map(
                                     (ingredient) => Padding(
                                       padding: const EdgeInsets.all(4.0),
-                                      child: CheckboxListTile(
-                                        title: Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                '$ingredient ${_selectedIngredients.where((item) => item['name'] == ingredient).isNotEmpty ? '- ${_selectedIngredients.firstWhere((item) => item['name'] == ingredient)['date'].toString().substring(0, 10)}' : ''}',
-                                                style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          _onIngredientSelected(ingredient);
+                                        },
+                                        child: CheckboxListTile(
+                                          title: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  '$ingredient ${_selectedIngredients.where((item) => item['name'] == ingredient).isNotEmpty ? '- ${_selectedIngredients.firstWhere((item) => item['name'] == ingredient)['date'].toString().substring(0, 10)}' : ''}',
+                                                  style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: _selectedIngredients
+                                                            .any((element) =>
+                                                                element[
+                                                                    'name'] ==
+                                                                ingredient)
+                                                        ? Colors.blue
+                                                        : Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                              IconButton(
+                                                onPressed: () {
+                                                  _onIngredientSelected(
+                                                      ingredient);
+                                                },
+                                                icon: Icon(
+                                                  Icons.calendar_today,
                                                   color: _selectedIngredients
                                                           .any((element) =>
                                                               element['name'] ==
@@ -254,36 +277,19 @@ class _AvailableIngredientsScreenState
                                                       : Colors.black,
                                                 ),
                                               ),
-                                            ),
-                                            IconButton(
-                                              onPressed: () {
-                                                print(_selectedIngredients
-                                                    .toString()
-                                                    .substring(0));
-                                                _onIngredientSelected(
-                                                    ingredient);
-                                              },
-                                              icon: Icon(
-                                                Icons.calendar_today,
-                                                color: _selectedIngredients.any(
-                                                        (element) =>
-                                                            element['name'] ==
-                                                            ingredient)
-                                                    ? Colors.blue
-                                                    : Colors.black,
-                                              ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
+                                          value: _selectedIngredients.any(
+                                              (element) =>
+                                                  element['name'] ==
+                                                  ingredient),
+                                          onChanged: (value) {
+                                            _onIngredientSelected(ingredient);
+                                          },
+                                          controlAffinity:
+                                              ListTileControlAffinity.leading,
+                                          activeColor: Colors.blue,
                                         ),
-                                        value: _selectedIngredients.any(
-                                            (element) =>
-                                                element['name'] == ingredient),
-                                        onChanged: (value) {
-                                          _onIngredientSelected(ingredient);
-                                        },
-                                        controlAffinity:
-                                            ListTileControlAffinity.leading,
-                                        activeColor: Colors.blue,
                                       ),
                                     ),
                                   )
@@ -312,7 +318,7 @@ class _AvailableIngredientsScreenState
                   ),
                 ),
                 onPressed: () {
-                  //  submit function
+                  // Placeholder for submitting ingredients and generating recipes
                 },
                 child: const Text(
                   'Generate Recipes',
