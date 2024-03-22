@@ -1,6 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages.dart/login.dart';
+import 'package:flutter_application_1/pages.dart/specification_page.dart';
+import 'package:flutter_application_1/services/UserApi.dart';
+
 class SignupPage extends StatefulWidget {
   @override
   State<SignupPage> createState() => _SignupPageState();
@@ -19,7 +21,7 @@ class _SignupPageState extends State<SignupPage> {
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text("SignUp  Form"),
+          title: const Text("SignUp"),
           centerTitle: true,
           elevation: 0,
           backgroundColor: Colors.white,
@@ -36,16 +38,17 @@ class _SignupPageState extends State<SignupPage> {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             child: Form(
                 key: _formfield,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset("images/whiteLogo.jpg",
-                    height: 150,
-                    width: 200,
+                    Image.asset(
+                      "images/whiteLogo.jpg",
+                      height: 150,
+                      width: 200,
                     ),
                     const SizedBox(height: 10),
 
@@ -55,10 +58,9 @@ class _SignupPageState extends State<SignupPage> {
                         keyboardType: TextInputType.name,
                         controller: usernameController,
                         decoration: const InputDecoration(
-                          labelText: "UserName",
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.person)
-                        ),
+                            labelText: "UserName",
+                            border: OutlineInputBorder(),
+                            prefixIcon: Icon(Icons.person)),
                         validator: (value) {
                           bool userNameValid =
                               RegExp(r'^[a-z A-Z]+$').hasMatch(value!);
@@ -96,10 +98,9 @@ class _SignupPageState extends State<SignupPage> {
                           }
                         }),
 
-                        const SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-
 
                     // Password Validate part
 
@@ -109,8 +110,8 @@ class _SignupPageState extends State<SignupPage> {
                       obscureText: passToggle,
                       decoration: InputDecoration(
                         labelText: "Password",
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.lock),
+                        border: const OutlineInputBorder(),
+                        prefixIcon: const Icon(Icons.lock),
                         suffix: InkWell(
                           onTap: () {
                             setState(() {
@@ -134,33 +135,58 @@ class _SignupPageState extends State<SignupPage> {
                     const SizedBox(height: 30),
 
                     InkWell(
-                      onTap: () {
+                      onTap: () async {
                         if (_formfield.currentState!.validate()) {
-                          print("Data Addeed Successfully");
-                          usernameController.clear();
-                          emailController.clear();
-                          passController.clear();
+                          try {
+                            // Call createUser method from UserApi
+                            await UserApi.createUser(
+                              userName: usernameController.text.trim(),
+                              email: emailController.text.trim(),
+                              password: passController.text.trim(),
+                            );
+
+                            // Clear text fields after successful user creation
+                            usernameController.clear();
+                            emailController.clear();
+                            passController.clear();
+
+                            // ignore: use_build_context_synchronously
+                            // Navigator.pushAndRemoveUntil(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => const SpecPage()),   (Route<dynamic> route) => false,
+                            // );
+                          } catch (error) {
+                            // Show error message if user creation fails
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Error creating user: $error'),
+                                duration: const Duration(seconds: 2),
+                              ),
+                            );
+                          }
                         }
                       },
-
-                      //button editing
-
+                      // Button UI remains unchanged
                       child: Container(
                         height: 50,
                         decoration: BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(10)),
+                          color: Colors.yellow,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         child: const Center(
-                            child: Text(
-                          "Sign up",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                          child: Text(
+                            "Sign up",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        )),
+                        ),
                       ),
                     ),
+
 
                     const SizedBox(
                       height: 25,
@@ -171,12 +197,12 @@ class _SignupPageState extends State<SignupPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Already have an Account?"),
+                        const Text("Already have an Account?"),
                         GestureDetector(
                           child: const Text(
                             " Log in",
                             style: TextStyle(
-                                color: Colors.blue,
+                                color: Colors.yellow,
                                 fontWeight: FontWeight.bold),
                           ),
                           onTap: () {
