@@ -199,7 +199,7 @@ class _AvailableIngredientsScreenState
                                 : null,
                           ),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 category,
@@ -226,7 +226,7 @@ class _AvailableIngredientsScreenState
                     Visibility(
                       visible: isSelected && _showIngredients,
                       child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
+                        duration: const Duration(milliseconds: 0),
                         curve: Curves.easeInOut,
                         height: _showIngredients
                             ? MediaQuery.of(context).size.height * 0.3
@@ -234,7 +234,7 @@ class _AvailableIngredientsScreenState
                         child: Center(
                           child: SingleChildScrollView(
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: _ingredients[index]
                                   .map(
                                     (ingredient) => Padding(
@@ -312,13 +312,43 @@ class _AvailableIngredientsScreenState
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.black,
+                  backgroundColor: Colors.grey,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32.0),
+                  ),
+                ),
+                onPressed: () {
+                  // Placeholder for scanner
+                },
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.qr_code, color: Colors.black), // Scanner Icon
+                    SizedBox(width: 10), // Spacer
+                    Text(
+                      'Scan the Ingredients',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.black,
                   backgroundColor: Colors.yellow,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(32.0),
                   ),
                 ),
                 onPressed: () {
-                  // Placeholder for submitting ingredients and generating recipes
+                  // Placeholder for recipe generation
                 },
                 child: const Text(
                   'Generate Recipes',
