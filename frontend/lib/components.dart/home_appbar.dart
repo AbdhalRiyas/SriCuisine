@@ -4,16 +4,15 @@ import 'package:iconsax/iconsax.dart';
 
 class HomeAppbar extends StatelessWidget {
   const HomeAppbar({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         ClipRRect(
-          borderRadius:
-              BorderRadius.circular(10), // adjust the radius as needed
+          borderRadius: BorderRadius.circular(10),
           child: const Image(
             image: AssetImage("assets/images/appLogoWhite.jpg"),
             width: 100,
@@ -23,30 +22,17 @@ class HomeAppbar extends StatelessWidget {
         const Text(
           "Welcome to\n  SriCuisine!",
           style: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              height: 1,
-              // color: Colors.grey[700]
-              ),
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+            height: 1,
+          ),
         ),
         const Spacer(),
-        // const Image(image: AssetImage("images/appLogo.jpg"), width: 100, height: 100,),
-        //  Container(
-        //   width: double.infinity,
-        //   height: 130,
-        //   decoration: BoxDecoration(
-        //     borderRadius: BorderRadius.circular(15),
-        //     image: const DecorationImage(
-        //       image: AssetImage("images/appLogo.jpg"),
-        //       fit: BoxFit.fill,
-        //     ),
-        //   ),
-        // ),frontend/assets/images/AppLogoWithoutBGjpg.jpg
         IconButton(
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const TrackerPage()),
+              MaterialPageRoute(builder: (context) => TrackerPage()),
             );
           },
           style: IconButton.styleFrom(
@@ -61,4 +47,34 @@ class HomeAppbar extends StatelessWidget {
       ],
     );
   }
+}
+
+// class AvailableIngredientsScreen extends StatefulWidget {
+//   @override
+//   _AvailableIngredientsScreenState createState() =>
+//       _AvailableIngredientsScreenState();
+// }
+
+// class _AvailableIngredientsScreenState
+//     extends State<AvailableIngredientsScreen> {
+//   // Your existing code for ingredient selection and recipe generation
+
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      backgroundColor: Colors.yellow,
+      title: const Text(
+        'Available Ingredients',
+        style: TextStyle(color: Colors.black),
+      ),
+      centerTitle: true,
+    ),
+    body: const Column(
+      children: [
+        HomeAppbar(), // Adding HomeAppbar here
+        // Your existing code for ingredient selection
+      ],
+    ),
+  );
 }
