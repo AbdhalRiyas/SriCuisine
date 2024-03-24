@@ -94,10 +94,6 @@ class _TrackerPageState extends State<TrackerPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
-                  'Expiry Dates',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
                 const SizedBox(height: 8),
                 ListView.builder(
                   shrinkWrap: true,

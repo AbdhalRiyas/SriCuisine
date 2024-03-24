@@ -45,11 +45,9 @@ class _AvailableIngredientsScreenState
     [
       'Chicken',
       'Pork',
-      'Mutton',
       'Fish',
       'Beef',
       'Lamb',
-      'Turkey',
       'Prawns',
       'Crab',
       'Clamps',
@@ -57,45 +55,18 @@ class _AvailableIngredientsScreenState
     // Fruits
     [
       'Apple',
-      'Avocado',
-      'Banana',
-      'Blueberry',
-      'Cactus fruit',
-      'Cantaloupe',
-      'Cherry',
-      'Clementine',
-      'Dates',
-      'Eggplant',
-      'Ginger Root',
-      'Grape',
-      'Grapefruit',
-      'Guava',
+      'Avocados',
+      'Bananas',
       'Jackfruit',
-      'Kiwi',
       'Lemon',
-      'Mandarine',
       'Mango',
-      'Mangostan',
-      'Mulberry',
-      'Nectarine',
-      'Orange',
-      'Papaya',
-      'Passion fruit',
-      'Peach',
-      'Pears',
       'Pineapple',
       'Pomegranate',
-      'Rambutan',
-      'Raspberry',
-      'Redcurrant',
-      'Strawberry',
-      'Watermelon',
     ],
     // Staples
     [
       'Gram Flour',
       'Wheat Flour',
-      'Rice Flour',
       'Rice',
       'Noodle',
       'Dhal',
@@ -105,6 +76,7 @@ class _AvailableIngredientsScreenState
       'Eggs',
       'Chickpeas',
       'Greenpeas',
+      'Coconut',
     ],
   ];
 
@@ -138,52 +110,44 @@ class _AvailableIngredientsScreenState
     } else {
       _selectedIngredients.removeAt(existingIndex);
     }
+    List ingredientNames =
+        _selectedIngredients.map((item) => item['name']).toList();
+
+    // Print the list of ingredient names
+    print(ingredientNames);
+
+    IngridientApi().postAvailableIngredients(ingredientNames);
     setState(() {});
     print(existingIndex);
-    // final DateTime? selectedDate = await _selectDate(context);
-    // if (selectedDate != null) {
-    //   setState(() {
-    //     final existingIndex = _selectedIngredients
-    //         .indexWhere((item) => item['name'] == ingredient);
-    //     if (existingIndex == -1) {
-    //       // Add the ingredient if it's not already selected
-    //       final Map<String, dynamic> ingredientMap = {
-    //         'name': ingredient,
-    //         'date': selectedDate,
-    //       };
-    //       _selectedIngredients.add(ingredientMap);
-    //     } else {
-    //       // Remove the ingredient if it's already selected
-    //       _selectedIngredients.removeAt(existingIndex);
-    //     }
-    //     // Print the selected ingredients array
-    //     print(_selectedIngredients);
-    //   });
-    // }
   }
+// void _onIngredientSelected(String ingredient) async {
+//     final DateTime? selectedDate = await _selectDate(context);
+//     if (selectedDate != null) {
+//       setState(() {
+//         final existingIndex = _selectedIngredients
+//             .indexWhere((item) => item['name'] == ingredient);
+//         if (existingIndex == -1) {
+//           // Add the ingredient if it's not already selected
+//           final Map<String, dynamic> ingredientMap = {
+//             'name': ingredient,
+//             'date': selectedDate,
+//           };
+//           _selectedIngredients.add(ingredientMap);
+//         } else {
+//           // Remove the ingredient if it's already selected
+//           _selectedIngredients.removeAt(existingIndex);
+//         }
 
-  // void _onIngredientSelected(String ingredient) async {
-  //   final DateTime? selectedDate = await _selectDate(context);
-  //   if (selectedDate != null) {
-  //     setState(() {
-  //       final existingIndex = _selectedIngredients
-  //           .indexWhere((item) => item['name'] == ingredient);
-  //       if (existingIndex == -1) {
-  //         // Add the ingredient if it's not already selected
-  //         final Map<String, dynamic> ingredientMap = {
-  //           'name': ingredient,
-  //           'date': selectedDate,
-  //         };
-  //         _selectedIngredients.add(ingredientMap);
-  //       } else {
-  //         // Remove the ingredient if it's already selected
-  //         _selectedIngredients.removeAt(existingIndex);
-  //       }
-  //       // Print the selected ingredients array
-  //       print(_selectedIngredients);
-  //     });
-  //   }
-  // }
+//         List ingredientNames =
+//             _selectedIngredients.map((item) => item['name']).toList();
+
+//         // Print the list of ingredient names
+//         print(ingredientNames);
+
+//         IngridientApi().postAvailableIngredients(ingredientNames);
+//       });
+//     }
+//   }
 
   Future<DateTime?> _selectDate(BuildContext context) async {
     return await showDatePicker(
@@ -220,7 +184,7 @@ class _AvailableIngredientsScreenState
                         _onCategoryTapped(index);
                       },
                       child: Card(
-                        elevation: isSelected ? 4 : 0,
+                        elevation: isSelected ? 4 : 2,
                         margin: const EdgeInsets.symmetric(
                             horizontal: 16, vertical: 8),
                         child: Container(
@@ -229,7 +193,7 @@ class _AvailableIngredientsScreenState
                           decoration: BoxDecoration(
                             color: isSelected
                                 ? const Color(0xFFE0E0E0)
-                                : Colors.white,
+                                : const Color(0xFFE0E0E0),
                             borderRadius: BorderRadius.circular(8),
                             boxShadow: isSelected
                                 ? [
@@ -240,7 +204,14 @@ class _AvailableIngredientsScreenState
                                       offset: const Offset(0, 1),
                                     ),
                                   ]
-                                : null,
+                                : [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 3,
+                                      offset: const Offset(0, 1),
+                                    ),
+                                  ],
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -422,7 +393,7 @@ class _AvailableIngredientsScreenState
                   }
                 },
                 child: const Text(
-                  'Generate Recipes',
+                  'Save Ingredients',
                   style: TextStyle(fontSize: 18, color: Colors.black),
                 ),
               ),

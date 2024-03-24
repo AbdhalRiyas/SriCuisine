@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/components/snackbar.dart';
 import 'package:flutter_application_1/pages/specification_page.dart';
 import 'package:flutter_application_1/models/user.dart';
 import 'package:flutter_application_1/pages/login.dart';
@@ -37,6 +38,9 @@ class UserApi {
         );
       } else {
         // If the server returns an unexpected response, log the status code and response body.
+        ScaffoldMessenger.of(context).showSnackBar(
+          errorSnackBar(json.decode(response.body)['message']),
+        );
         print('Status code: ${response.statusCode}');
         print('Response body: ${response.body}');
         throw Exception('Failed to load data');
@@ -44,6 +48,9 @@ class UserApi {
     } catch (e) {
       // If an error occurs, log the error message and throw an exception.
       print('Error: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        errorSnackBar(e.toString()),
+      );
       throw Exception('Failed to load data: $e');
     }
   }
@@ -91,6 +98,9 @@ class UserApi {
     } catch (e) {
       // If an error occurs, log the error message and throw an exception.
       print('Error: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+      errorSnackBar(e.toString()),
+      );
       throw Exception('Failed to load data: $e');
     }
   }
@@ -131,11 +141,17 @@ class UserApi {
         // If the server returns an unexpected response, log the status code and response body.
         print('Status code: ${response.statusCode}');
         print('Response body: ${response.body}');
+        ScaffoldMessenger.of(context).showSnackBar(
+        errorSnackBar(json.decode(response.body)['message']),
+        );
         throw Exception('Failed to update user');
       }
     } catch (e) {
       // If an error occurs, log the error message and throw an exception.
       print('Error: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        errorSnackBar(e.toString()),
+      );
       throw Exception('Failed to update user: $e');
     }
   }
@@ -176,11 +192,17 @@ class UserApi {
         // If the server returns an unexpected response, log the status code and response body.
         print('Status code: ${response.statusCode}');
         print('Response body: ${response.body}');
+         ScaffoldMessenger.of(context).showSnackBar(
+          errorSnackBar(json.decode(response.body)['message']),
+        );
         throw Exception('Failed to update user');
       }
     } catch (e) {
       // If an error occurs, log the error message and throw an exception.
       print('Error: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+      errorSnackBar(e.toString()),
+      );
       throw Exception('Failed to update user: $e');
     }
   }

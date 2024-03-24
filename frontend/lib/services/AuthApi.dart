@@ -24,7 +24,7 @@ class AuthApi {
     };
     try {
       final response = await http.post(
-        Uri.parse('https://sri-cusine-backend.onrender.com/api/v1/auth'),
+        Uri.parse('${ApiRoutes.BASE_URL}auth'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -60,8 +60,7 @@ class AuthApi {
     print('initiateChangePassword(context, username)');
     try {
       final response = await http.post(
-        Uri.parse(
-            'https://sri-cusine-backend.onrender.com/api/v1/auth/reset-request/'),
+        Uri.parse('${ApiRoutes.BASE_URL}auth/reset-request/'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -102,7 +101,7 @@ class AuthApi {
     };
     try {
       final response = await http.post(
-        Uri.parse('https://sri-cusine-backend.onrender.com/api/v1/auth/otp/'),
+        Uri.parse('${ApiRoutes.BASE_URL}auth/otp/'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -143,7 +142,7 @@ class AuthApi {
     try {
       final response = await http.post(
         Uri.parse(
-            'https://sri-cusine-backend.onrender.com/api/v1/auth/password/reset-password'),
+            '${ApiRoutes.BASE_URL}auth/password/reset-password'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',

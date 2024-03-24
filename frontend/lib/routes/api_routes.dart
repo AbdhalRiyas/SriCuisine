@@ -1,7 +1,9 @@
 class ApiRoutes {
   static const String BASE_URL =
       "https://sri-cusine-backend.onrender.com/api/v1/";
-  //https://sri-cusine-backend.onrender.com/api/v1/ingredients/get/
+
+  static const String BASE_URL_INGREDIENTS =
+      "https://sri-cusine-ml.onrender.com/api/v1/generateRecipes";
 
   static const String CREATE_USER = "users/";
   static const String DELETE_USER = "/deleteUser";

@@ -17,20 +17,11 @@ class _OtpPageState extends State<OtpPage> {
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text("Otp Page"),
+          title: Text("O T P"),
           centerTitle: true,
           elevation: 0,
           backgroundColor: Colors.white,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              size: 20,
-              color: Colors.black,
-            ),
-          ),
+          
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -41,10 +32,10 @@ class _OtpPageState extends State<OtpPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Image.asset("images/whiteLogo.jpg",
-                    // height: 150,
-                    // width: 200,
-                    // ),
+                      Image.asset("images/lockimage.jpg",
+                      height: 150,
+                      width: 200,
+                    ),
                     const SizedBox(height: 10),
 
                     // Username Validate part
@@ -53,9 +44,9 @@ class _OtpPageState extends State<OtpPage> {
                         keyboardType: TextInputType.number,
                         controller: otpnumberController,
                         decoration: const InputDecoration(
-                            labelText: "OtpNumber",
+                            labelText: "OTP",
                             border: OutlineInputBorder(),
-                            prefixIcon: Icon(Icons.numbers)),
+                            prefixIcon: Icon(Icons.lock)),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Enter recieved OtpNumber";
@@ -84,13 +75,13 @@ class _OtpPageState extends State<OtpPage> {
                       child: Container(
                         height: 50,
                         decoration: BoxDecoration(
-                            color: Colors.blue,
+                            color: Colors.yellow,
                             borderRadius: BorderRadius.circular(10)),
                         child: const Center(
                             child: Text(
                           " Confirm",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
