@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/services/UserApi.dart';
 
 class SpecPage extends StatefulWidget {
-  //const SpecPage({Key? key});
-
   @override
   State<SpecPage> createState() => _SpecPageState();
 }
@@ -31,35 +29,27 @@ class _SpecPageState extends State<SpecPage> {
       "isChecked": false
     },
     {
-      "name": "Egg",
+      "name": "Eggs",
       "description": "Refers to egg and egg-based products",
       "isChecked": false
     },
     {
-      "name": "Peanuts",
-      "description": "Includes peanuts and peanut-based products",
+      "name": "Fish",
+      "description": "Includes fish and fish-based products",
       "isChecked": false
     },
     {
-      "name": "Tree Nuts",
-      "description":
-          "Includes various tree nuts such as almonds, walnuts, etc.",
+      "name": "Prawn",
+      "description": "Includes prawn and prawn-based products.",
       "isChecked": false
     },
     {
-      "name": "Shellfish",
-      "description": "Refers to shellfish and shellfish-based products",
+      "name": "Nuts",
+      "description": "Includes various tree nuts such as almonds,walnuts, etc.",
       "isChecked": false
     },
   ];
 
-  //save button details
-
-  // void saveUserIn() {}
-
-  // double _height = 0.0;
-  // double _weight = 0.0;
-  // int _age = 0;
   String _selectedGender = 'Male';
 
   @override
@@ -137,11 +127,7 @@ class _SpecPageState extends State<SpecPage> {
                 const SizedBox(
                   height: 10,
                 ),
-
-                // const Divider(height: 5),
-
                 const SizedBox(height: 10),
-
                 const Center(
                   child: Text(
                     " Height,Weight & Age",
@@ -157,9 +143,7 @@ class _SpecPageState extends State<SpecPage> {
                     return Container();
                   }).toList(),
                 ),
-
                 const SizedBox(height: 20),
-
                 TextFormField(
                   keyboardType: TextInputType.number,
                   controller: heightController,
@@ -169,11 +153,6 @@ class _SpecPageState extends State<SpecPage> {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                  // onChanged: (value) {
-                  //   setState(() {
-                  //     _height = double.tryParse(value) ?? 0.0;
-                  //   });
-                  // },
                   validator: (value) {
                     bool heightValid = RegExp(r'^\d{2,3}$').hasMatch(value!);
 
@@ -184,9 +163,7 @@ class _SpecPageState extends State<SpecPage> {
                     }
                   },
                 ),
-
                 const SizedBox(height: 20),
-
                 TextFormField(
                   keyboardType: TextInputType.number,
                   controller: weightController,
@@ -196,12 +173,6 @@ class _SpecPageState extends State<SpecPage> {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                  // onChanged: (value) {
-                  //   setState(() {
-                  //     _weight = double.tryParse(value) ?? 0.0;
-                  //   });
-                  // },
-
                   validator: (value) {
                     bool weightValid = RegExp(r'^\d{2,3}$').hasMatch(value!);
 
@@ -212,9 +183,7 @@ class _SpecPageState extends State<SpecPage> {
                     }
                   },
                 ),
-
                 const SizedBox(height: 20),
-
                 TextFormField(
                   keyboardType: TextInputType.number,
                   controller: ageController,
@@ -223,21 +192,7 @@ class _SpecPageState extends State<SpecPage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    // suffix: InkWell(
-                    //   onTap: () {
-                    //     setState(() {
-                    //       passToggle = !passToggle;
-                    //     });
-                    //   },
-                    // )
                   ),
-
-                  // onChanged: (value) {
-                  //   setState(() {
-                  //     _age = int.tryParse(value) ?? 0;
-                  //   });
-                  // },
-
                   validator: (value) {
                     bool ageValid =
                         RegExp(r'^(?:[1-9][0-9]?|100)$').hasMatch(value!);
@@ -249,9 +204,7 @@ class _SpecPageState extends State<SpecPage> {
                     }
                   },
                 ),
-
                 const SizedBox(height: 20),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -277,15 +230,7 @@ class _SpecPageState extends State<SpecPage> {
                     const Text('Female'),
                   ],
                 ),
-
                 const SizedBox(height: 20),
-
-                // Center(
-                //   child: CustomSaveButton(
-                //     onTap: saveUserIn,
-                //   ),
-                // ),
-
                 InkWell(
                   onTap: () {
                     if (_formfield.currentState!.validate()) {
@@ -300,9 +245,6 @@ class _SpecPageState extends State<SpecPage> {
                       );
                     }
                   },
-
-                  //button editing
-
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
