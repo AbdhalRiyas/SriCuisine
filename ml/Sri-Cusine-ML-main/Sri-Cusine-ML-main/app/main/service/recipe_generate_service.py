@@ -6,19 +6,13 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 class RecipeGenerateService:
     def generate_recommendations(self, user_allergens, user_ingredients):
-        csv_file_path = os.path.join(os.path.dirname(__file__), '..', 'utils', 'FinalModifiedDataset.csv')
+        csv_file_path = os.path.join(os.path.dirname(__file__), '..', 'utils', 'IndianFoodDataset.csv')
 
-        try:
-            df = pd.read_csv(csv_file_path, encoding="utf-8")
-        except UnicodeDecodeError:
-            df = pd.read_csv(csv_file_path, encoding="latin1")
+        df = pd.read_csv(csv_file_path)
 
         # Filter out recipes containing the user's allergens
-        if len(user_allergens) == 1:
-            df = df[~df['Allergens'].str.contains(user_allergens[0], na=False)]
-        elif len(user_allergens) == 2:
-            df = df[~df['Allergens'].str.contains(user_allergens[0], na=False) & ~df['Allergens'].str.contains(
-            user_allergens[1], na=False)]
+        for allergen in user_allergens:
+            df = df[~df['Allergens'].str.contains(allergen, na=False)]
 
         # Drop rows with missing values in the 'Ingredients' column
         df = df.dropna(subset=['Ingredients'])
@@ -48,10 +42,11 @@ class RecipeGenerateService:
         # Sort recipes by cosine similarity in descending order
         df = df.sort_values(by='CosineSimilarity', ascending=False)
 
-        # Select top 5 recommended recipes
-        top_5_recipes = df[['Srno', 'RecipeName', 'Ingredients', 'Calorie', 'TotalTimeInMins', 'Instructions']].head(5)
+        # Select top 10 recommended recipes
+        top_10_recipes = df[['Srno', 'RecipeName', 'Allergens', 'IngredientsWithQuantites',
+                             'Calorie', 'TotalTimeInMins','Servings', 'Course', 'Instructions']].head(10)
 
-        # Convert top 5 recipes DataFrame to JSON format
-        result_json = top_5_recipes.to_json(orient='records')
+        # Convert top 10 recipes DataFrame to JSON format
+        result_json = top_10_recipes.to_json(orient='records')
 
         return result_json

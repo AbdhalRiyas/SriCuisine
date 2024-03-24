@@ -3,6 +3,7 @@ from flask_cors import CORS
 from app.main.routes import bp as routes_bp
 from app.main.utils.config import config_by_name, mongo
 
+
 def execute_app(config_name):
     app = Flask(__name__)
     CORS(app)  # enable CORS
