@@ -59,10 +59,15 @@ class _SpecPageState extends State<SpecPage> {
       appBar: AppBar(
         title: const Center(
           child: Text(
-            "Allergies / Dietary restrictions",
+            "Allergies & Specifications",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            )
           ),
         ),
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.yellow,
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -234,7 +239,6 @@ class _SpecPageState extends State<SpecPage> {
                 InkWell(
                   onTap: () {
                     if (_formfield.currentState!.validate()) {
-                      print(allergens);
                       UserApi.updateUser(
                         context: context,
                         allergens: allergens,
