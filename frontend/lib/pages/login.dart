@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text("Login Page"),
+          title: const Text("LogIn"),
           centerTitle: true,
           elevation: 0,
           backgroundColor: Colors.white,
@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             child: Form(
                 key: _formfield,
                 child: Column(
@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                               RegExp(r'^[a-z A-Z]+$').hasMatch(value!);
 
                           if (value.isEmpty) {
-                            return "Enter userName";
+                            return "Enter UserName";
                           } else if (!userNameValid) {
                             return "Enter Valid UserName";
                           }
@@ -96,13 +96,14 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       validator: (value) {
-                         bool passwordValid =
-                            RegExp(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$').hasMatch(value!);
+                        bool passwordValid = RegExp(
+                                r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')
+                            .hasMatch(value!);
 
                         if (value.isEmpty) {
                           return "Enter Password";
                         } else if (!passwordValid) {
-                          return "Enter Valid Password (Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number)";
+                          return "Minimum 8 characters | one uppercase letter\none lowercase letter | one number";
                         }
                       },
                     ),
@@ -119,6 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                               'forgot password',
                               style: TextStyle(
                                 color: Colors.black,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                             onTap: () {
@@ -128,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                               } else {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
-                                  content: Text("Enter your username"),
+                                  content: Text("Enter your UserName"),
                                   duration: const Duration(seconds: 2),
                                 ));
                               }
@@ -158,13 +160,13 @@ class _LoginPageState extends State<LoginPage> {
                       child: Container(
                         height: 50,
                         decoration: BoxDecoration(
-                            color: Colors.blue,
+                            color: Colors.yellow,
                             borderRadius: BorderRadius.circular(10)),
                         child: const Center(
                             child: Text(
                           "Log in",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),

@@ -6,6 +6,7 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
           // we will give media query height
@@ -23,30 +24,23 @@ class WelcomePage extends StatelessWidget {
               Column(
                 children: <Widget>[
                   const Text(
-                    "Welcome",
+                    "W E L C O M E",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
-                  Text(
-                    "hello welcome to SriCusine recipe recommendation application",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                      fontSize: 15,
-                    ),
-                  )
                 ],
               ),
+
               Container(
-                height: MediaQuery.of(context).size.height / 3,
+                height: MediaQuery.of(context).size.height / 2,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage("images/appLogo.jpg"))),
+                        image: AssetImage('images/welcomeimage.jpg'))),
               ),
               Column(
                 children: <Widget>[
@@ -64,15 +58,18 @@ class WelcomePage extends StatelessWidget {
                         side: BorderSide(color: Colors.black),
                         borderRadius: BorderRadius.circular(50)),
 
-                    child: Text(
+                    child: const Text(
                       "Login",
                       style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                          TextStyle(
+                            fontWeight: FontWeight.w600,
+                             fontSize: 18),
                     ),
                   ),
 
                   // creating the signup button
                   SizedBox(height: 20),
+                  
                   MaterialButton(
                     minWidth: double.infinity,
                     height: 60,
@@ -82,13 +79,13 @@ class WelcomePage extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => SignupPage()));
                     },
-                    color: Color(0xff0095FF),
+                    color: Colors.yellow,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50)),
-                    child: Text(
+                    child: const Text(
                       "Sign up",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.w600,
                           fontSize: 18),
                     ),

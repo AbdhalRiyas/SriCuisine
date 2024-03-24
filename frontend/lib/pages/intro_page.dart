@@ -18,13 +18,14 @@ class IntroPage extends StatelessWidget {
         backgroundColor: Colors.yellow,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: const [
             Center(
               child: Image(
-                image: AssetImage('images/appLogo.jpg'),
+                image: AssetImage('images/introimage.jpg'),
               ),
             ),
-            const SizedBox(height: 20),
+
+            SizedBox(height: 20),
             CircularProgressIndicator(color: Colors.black),
           ],
         ));
