@@ -9,6 +9,7 @@ class UpdateProfilePage extends StatefulWidget {
 }
 
 class _UpdateProfilePageState extends State<UpdateProfilePage> {
+  final _formfield = GlobalKey<FormState>();
   TextEditingController heightController = TextEditingController();
   TextEditingController weightController = TextEditingController();
   TextEditingController ageController = TextEditingController();
@@ -70,74 +71,85 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                   child: Column(
                 children: [
                   TextFormField(
+                    keyboardType: TextInputType.number,
                     controller: heightController,
                     decoration: InputDecoration(
                       labelText: 'Height (cm)',
-                      labelStyle:
-                          const TextStyle(color: Colors.black, fontSize: 18),
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(color: Colors.black, width: 2),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
-                      filled: true,
-                      fillColor: Colors.orange[50],
                     ),
+                    validator: (value) {
+                      bool heightValid = RegExp(r'^\d{2,3}$').hasMatch(value!);
+
+                    if (!heightValid) {
+                        return "Enter Valid user Height";
+                      }
+                    },
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
+                    keyboardType: TextInputType.number,
                     controller: weightController,
                     decoration: InputDecoration(
                       labelText: 'Weight (kg)',
-                      labelStyle:
-                          const TextStyle(color: Colors.black, fontSize: 18),
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(color: Colors.black, width: 2),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
-                      filled: true,
-                      fillColor: Colors.orange[50],
                     ),
+                    validator: (value) {
+                      bool weightValid = RegExp(r'^\d{2,3}$').hasMatch(value!);
+
+                       if (!weightValid) {
+                        return "Enter Valid Weight";
+                      }
+                    },
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
+                    keyboardType: TextInputType.number,
                     controller: ageController,
                     decoration: InputDecoration(
-                      labelText: 'Age',
-                      labelStyle:
-                          const TextStyle(color: Colors.black, fontSize: 18),
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(color: Colors.black, width: 2),
+                      labelText: 'Age (years)',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
-                      filled: true,
-                      fillColor: Colors.orange[50],
                     ),
+                    validator: (value) {
+                      bool ageValid =
+                          RegExp(r'^(?:[1-9][0-9]?|100)$').hasMatch(value!);
+                        if (!ageValid) {
+                        return "Enter Valid Age";
+                      }
+                    },
                   ),
                   const SizedBox(height: 20),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
+                  InkWell(
+                    onTap: () {
+                      if (_formfield.currentState!.validate()) {
                       UserApi.updateUserDetails(
                           context: context,
                           height: double.parse(heightController.text),
                           weight: double.parse(weightController.text),
                           age: int.parse(ageController.text));
+                      }
                     },
-                    child: const Text('Save',
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: Colors.yellow,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const Center(
+                          child: Text(
+                        "Save",
                         style: TextStyle(
-                          fontSize: 20,
                           color: Colors.black,
-                        )),
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(130, 65),
-                      backgroundColor: Colors.yellow,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 10),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )),
                     ),
-                  )
+                  ),
                 ],
               ))
             ],
