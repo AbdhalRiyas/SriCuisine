@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: const Text("LogIn"),
+          title: const Text("Log in"),
           centerTitle: true,
           elevation: 0,
           backgroundColor: Colors.white,

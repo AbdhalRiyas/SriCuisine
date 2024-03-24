@@ -110,9 +110,44 @@ class _AvailableIngredientsScreenState
     } else {
       _selectedIngredients.removeAt(existingIndex);
     }
+    List ingredientNames =
+        _selectedIngredients.map((item) => item['name']).toList();
+
+    // Print the list of ingredient names
+    print(ingredientNames);
+
+    IngridientApi().postAvailableIngredients(ingredientNames);
     setState(() {});
     print(existingIndex);
   }
+// void _onIngredientSelected(String ingredient) async {
+//     final DateTime? selectedDate = await _selectDate(context);
+//     if (selectedDate != null) {
+//       setState(() {
+//         final existingIndex = _selectedIngredients
+//             .indexWhere((item) => item['name'] == ingredient);
+//         if (existingIndex == -1) {
+//           // Add the ingredient if it's not already selected
+//           final Map<String, dynamic> ingredientMap = {
+//             'name': ingredient,
+//             'date': selectedDate,
+//           };
+//           _selectedIngredients.add(ingredientMap);
+//         } else {
+//           // Remove the ingredient if it's already selected
+//           _selectedIngredients.removeAt(existingIndex);
+//         }
+
+//         List ingredientNames =
+//             _selectedIngredients.map((item) => item['name']).toList();
+
+//         // Print the list of ingredient names
+//         print(ingredientNames);
+
+//         IngridientApi().postAvailableIngredients(ingredientNames);
+//       });
+//     }
+//   }
 
   Future<DateTime?> _selectDate(BuildContext context) async {
     return await showDatePicker(
@@ -358,7 +393,7 @@ class _AvailableIngredientsScreenState
                   }
                 },
                 child: const Text(
-                  'Generate Recipes',
+                  'Save Ingredients',
                   style: TextStyle(fontSize: 18, color: Colors.black),
                 ),
               ),

@@ -4,7 +4,7 @@ import 'package:iconsax/iconsax.dart';
 
 class PopularRecipePage extends StatefulWidget {
   final PopularRecipe popularrecipe;
-  PopularRecipePage({required this.popularrecipe});
+  const PopularRecipePage({super.key, required this.popularrecipe});
 
   @override
   State<PopularRecipePage> createState() => _PopularRecipePageState();
@@ -18,7 +18,7 @@ class _PopularRecipePageState extends State<PopularRecipePage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     _scrollController = ScrollController(initialScrollOffset: 0.0);
     _scrollController.addListener(() {
       changeAppBarColor(_scrollController);
@@ -46,15 +46,6 @@ class _PopularRecipePageState extends State<PopularRecipePage>
     }
   }
 
-  // // fab to write review
-  // showFAB(TabController tabController) {
-  //   int reviewTabIndex = 2;
-  //   if (tabController.index == reviewTabIndex) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,25 +65,6 @@ class _PopularRecipePageState extends State<PopularRecipePage>
                 child: const Text("Start Cooking"),
               ),
             ),
-            // const SizedBox(width: 10),
-            // Expanded(
-            //   child: IconButton(
-            //     onPressed: () {},
-            //     style: IconButton.styleFrom(
-            //       shape: CircleBorder(
-            //         side: BorderSide(
-            //           color: Colors.grey.shade300,
-            //           width: 2,
-            //         ),
-            //       ),
-            //     ),
-            //     icon: Icon(
-            //       // widget.food.isLiked ? Iconsax.heart5 : Iconsax.heart,
-            //       // color: widget.food.isLiked ? Colors.red : Colors.black,
-            //       // size: 20,
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),
@@ -107,96 +79,15 @@ class _PopularRecipePageState extends State<PopularRecipePage>
             backgroundColor: Colors.transparent,
             elevation: 0,
             centerTitle: true,
-            // title: const Text('Search Recipe',
-            //     style: TextStyle(
-            //         fontFamily: 'inter',
-            //         fontWeight: FontWeight.w400,
-            //         fontSize: 16)),
-            // leading: IconButton(
-            //   onPressed: () => Navigator.pop(context),
-            //   style: IconButton.styleFrom(
-            //     backgroundColor: Colors.yellow[50],
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(10),
-            //     ),
-            //     fixedSize: const Size(5, 50),
-            //   ),
-            //   icon: const Icon(CupertinoIcons.chevron_back),
-            // ),
             leading: IconButton(
               icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
-            // actions: [
-            //   IconButton(
-            //       onPressed: () {},
-            //       icon: const Icon(Iconsax.heart,
-            //           color: Colors.white)),
-            // ],
-            //systemOverlayStyle: SystemUiOverlayStyle.dark,
           ),
         ),
       ),
-      // Post Review FAB
-      // floatingActionButton: Visibility(
-      //   visible: showFAB(_tabController),
-      //   child: FloatingActionButton(
-      //     onPressed: () {
-      //       showDialog(
-      //           context: context,
-      //           builder: (BuildContext context) {
-      //             return AlertDialog(
-      //               content: Container(
-      //                 width: MediaQuery.of(context).size.width,
-      //                 height: 150,
-      //                 color: Colors.white,
-      //                 child: const TextField(
-      //                   keyboardType: TextInputType.multiline,
-      //                   minLines: 6,
-      //                   decoration: InputDecoration(
-      //                     hintText: 'Write your review here...',
-      //                   ),
-      //                   maxLines: null,
-      //                 ),
-      //               ),
-      //               actions: [
-      //                 Row(
-      //                   children: [
-      //                     Container(
-      //                       width: 120,
-      //                       child: TextButton(
-      //                         onPressed: () {
-      //                           Navigator.of(context).pop();
-      //                         },
-      //                         style: TextButton.styleFrom(
-      //                           foregroundColor: Colors.grey[600],
-      //                         ),
-      //                         child: const Text('cancel'),
-      //                       ),
-      //                     ),
-      //                     Expanded(
-      //                       child: Container(
-      //                         child: ElevatedButton(
-      //                           onPressed: () {},
-      //                           style: ElevatedButton.styleFrom(
-      //                           backgroundColor: Colors.yellow,
-      //                           ),
-      //                           child: const Text('Post Review'),
-      //                         ),
-      //                       ),
-      //                     ),
-      //                   ],
-      //                 )
-      //               ],
-      //             );
-      //           });
-      //     },
-      //     child: const Icon(Icons.edit),
-      //     backgroundColor: Colors.yellow,
-      //   ),
-      // ),
       body: ListView(
         controller: _scrollController,
         shrinkWrap: true,
@@ -205,12 +96,6 @@ class _PopularRecipePageState extends State<PopularRecipePage>
         children: [
           // Section 1 - Recipe Image
           GestureDetector(
-            // onTap: () {
-            //   Navigator.of(context).push(MaterialPageRoute(
-            //       builder: (context) => FullScreenImage(
-            //           image:
-            //               Image.asset(widget.data.photo, fit: BoxFit.cover))));
-            // },
             child: Container(
               height: 200,
               width: MediaQuery.of(context).size.width,
@@ -276,14 +161,6 @@ class _PopularRecipePageState extends State<PopularRecipePage>
                             fontSize: 16),
                       ),
                     ),
-                    // const SizedBox(width: 20),
-                    // const Icon(Iconsax.user),
-                    // Text(
-                    //   "${widget.recipe.servings} servings",
-                    //   style: const TextStyle(
-                    //     fontSize: 16,
-                    //   ),
-                    // ),
                   ],
                 ),
                 // Recipe Title
@@ -347,7 +224,7 @@ class _PopularRecipePageState extends State<PopularRecipePage>
               labelColor: Colors.black,
               unselectedLabelColor: Colors.black.withOpacity(0.6),
               labelStyle: const TextStyle(
-                  fontFamily: 'inter', fontWeight: FontWeight.w500),
+                  fontFamily: 'inter', fontWeight: FontWeight.w500 , fontSize: 16),
               indicatorColor: Colors.black,
               tabs: const [
                 Tab(
@@ -356,9 +233,6 @@ class _PopularRecipePageState extends State<PopularRecipePage>
                 Tab(
                   text: 'Tutorial',
                 ),
-                // Tab(
-                //   text: 'Reviews',
-                // ),
               ],
             ),
           ),
@@ -366,48 +240,58 @@ class _PopularRecipePageState extends State<PopularRecipePage>
           IndexedStack(
             index: _tabController.index,
             children: [
-              // Ingridients
-                ListView.builder(
-                  shrinkWrap: true,
-                  padding: EdgeInsets.zero,
-                  itemCount: 1,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return Text(
+              // Ingredients
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Ingredients",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
                       widget.popularrecipe.ingredients,
                       style: const TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'inter',
+                        fontSize: 18,
+                        color: Colors.black87,
                       ),
-                    );
-                  },
+                      textAlign: TextAlign.justify,
+                    ),
+                  ],
                 ),
-              // Tutorials
-                ListView.builder(
-                  shrinkWrap: true,
-                  padding: EdgeInsets.zero,
-                  itemCount: 1,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return Text(
+              ),
+              // Tutorial
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Tutorial",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
                       widget.popularrecipe.instructions,
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
+                        color: Colors.black87,
                       ),
-                    );
-                  },
+                      textAlign: TextAlign.justify,
+                    ),
+                  ],
                 ),
-              // Reviews
-              // if (widget.data.reviews != null)
-              //   ListView.builder(
-              //     shrinkWrap: true,
-              //     padding: EdgeInsets.zero,
-              //     itemCount: widget.data.reviews!.length,
-              //     physics: NeverScrollableScrollPhysics(),
-              //     itemBuilder: (context, index) {
-              //       return ReviewTile(data: widget.data.reviews![index]);
-              //     },
-              //   )
+              ),
             ],
           ),
         ],

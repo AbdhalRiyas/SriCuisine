@@ -115,10 +115,10 @@ class _SpecPageState extends State<SpecPage> {
                           ),
                           onChanged: (newValue) {
                             if (allergens
-                                .contains(subj["name"].toLowerCase())) {
-                              allergens.remove(subj["name"].toLowerCase());
+                                .contains(subj["name"])) {
+                              allergens.remove(subj["name"]);
                             } else {
-                              allergens.add(subj["name"].toLowerCase());
+                              allergens.add(subj["name"]);
                             }
                             setState(() {
                               subj["isChecked"] = newValue;

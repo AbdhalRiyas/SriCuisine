@@ -20,7 +20,7 @@ class _SignupPageState extends State<SignupPage> {
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: const Text("SignUp"),
+          title: const Text("Sign up"),
           centerTitle: true,
           elevation: 0,
           backgroundColor: Colors.white,
