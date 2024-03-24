@@ -18,20 +18,10 @@ class _ResetPassPageState extends State<ResetPassPage> {
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text("ResetPassword Page"),
+          title: const Text("ResetPassword"),
           centerTitle: true,
           elevation: 0,
           backgroundColor: Colors.white,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              size: 20,
-              color: Colors.black,
-            ),
-          ),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -42,10 +32,7 @@ class _ResetPassPageState extends State<ResetPassPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Image.asset("images/whiteLogo.jpg",
-                    // height: 150,
-                    // width: 200,
-                    // ),
+                    
                     const SizedBox(height: 10),
 
                     // Username Validate part
@@ -93,11 +80,15 @@ class _ResetPassPageState extends State<ResetPassPage> {
                               : Icons.visibility_off),
                         ),
                       ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
+                     validator: (value) {
+                        bool passwordValid = RegExp(
+                                r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')
+                            .hasMatch(value!);
+
+                        if (value.isEmpty) {
                           return "Enter New Password";
-                        } else if (newPassController.text.length < 6) {
-                          return "Password length should not be more than 6 Characters";
+                        } else if (!passwordValid) {
+                          return "Minimum 8 characters | one uppercase letter\none lowercase letter | one number";
                         }
                       },
                     ),
@@ -117,13 +108,13 @@ class _ResetPassPageState extends State<ResetPassPage> {
                       child: Container(
                         height: 50,
                         decoration: BoxDecoration(
-                            color: Colors.blue,
+                            color: Colors.yellow,
                             borderRadius: BorderRadius.circular(10)),
                         child: const Center(
                             child: Text(
                           "Reset Password",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
