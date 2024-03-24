@@ -1,44 +1,51 @@
 class User {
-  final String? id;
-  final String? userName;
-  final String? email;
-  final String? password;
-  final List<String>? allergens;
-  final double? height;
-  final double? weight;
-  final String? gender;
+  String? id;
+  String? userName;
+  String? email;
+  List<String>? allergens;
+  String? status;
+  int? v;
+  int? age;
+  int? height;
+  int? weight;
 
-  User(
-      {this.id,
-      this.userName,
-      this.email,
-      this.password,
-      this.allergens,
-      this.height,
-      this.weight,
-      this.gender});
+  User({
+    this.id,
+    this.userName,
+    this.email,
+    this.allergens,
+    this.status,
+    this.v,
+    this.age,
+    this.height,
+    this.weight,
+  });
 
-  List<User> users = [
-    User(
-        id: '1',
-        userName: 'John Doe',
-        email: "johndoe@gmail.com",
-        password: "john123",
-        allergens: ["Peanuts", "Gluten"],
-        height: 1.80,
-        weight: 80.0,
-        gender: "Male"
-    ),
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json["_id"],
+        userName: json["userName"],
+        email: json["email"],
+        allergens: json["allergens"] == null
+            ? []
+            : List<String>.from(json["allergens"]!.map((x) => x)),
+        status: json["status"],
+        v: json["__v"],
+        age: json["age"],
+        height: json["height"],
+        weight: json["weight"],
+      );
 
-    User(
-        id: '2',
-        userName: 'Jane Doe',
-        email: "janedoegmail.com",
-        password: "jane123",
-        allergens: ["Peanuts", "Gluten"],
-        height: 1.60,
-        weight: 60.0,
-        gender: "Female"
-    )
-  ];
+  Map<String, dynamic> toJson() => {
+        "_id": id,
+        "userName": userName,
+        "email": email,
+        "allergens": allergens == null
+            ? []
+            : List<dynamic>.from(allergens!.map((x) => x)),
+        "status": status,
+        "__v": v,
+        "age": age,
+        "height": height,
+        "weight": weight,
+      };
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_application_1/pages.dart/signup.dart'; // import the necessary page we want to do the testing of
+import 'package:flutter_application_1/pages/signup.dart'; // import the necessary page we want to do the testing of
 
 void main() {
   testWidgets('SignupPage Widget Test', (WidgetTester tester) async {
