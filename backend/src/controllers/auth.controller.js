@@ -106,12 +106,11 @@ const requestPasswordReset = asyncHanlder(async (req, res) => {
       throw new AppError(500, i18n.__("EMAIL_SENDING_FAILED"));
     }
 
-    res
-      .status(200)
-      .json({
-        payload: null,
-        status: Status.getSuccessStatus(i18n.__("SUCCESS")),
-      });
+    res.status(200).json({
+      payload: null,
+      userId: user._id,
+      status: Status.getSuccessStatus(i18n.__("SUCCESS")),
+    });
   } catch {
     logger.error(
       "[authController] :: requestPasswordReset() : error : " + error
