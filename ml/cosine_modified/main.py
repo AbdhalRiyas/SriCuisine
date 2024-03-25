@@ -4,9 +4,9 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 # Load the dataset
 try:
-    df = pd.read_csv("Demo_IndianFoodDataset.csv", encoding="utf-8")
+    df = pd.read_csv("RecipeDataset_modified.csv", encoding="utf-8")
 except UnicodeDecodeError:
-    df = pd.read_csv("Demo_IndianFoodDataset.csv", encoding="latin1")
+    df = pd.read_csv("RecipeDataset_modified.csv", encoding="latin1")
 
 
 # Let the user enter their allergies and ingredients
