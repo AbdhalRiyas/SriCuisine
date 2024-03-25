@@ -1,76 +1,40 @@
 class Recipe {
-  String name;
-  String image;
-  double cal;
-  double time;
-  double rate;
-  int reviews;
-  bool isLiked;
+  final int? srno;
+  final String? recipeName;
+  final String? image;
+  final String? servings;
+  final String? course;
+  final int? calorie;
+  final String? ingredientsWithQuantites;
+  final String? totalTimeInMins;
+  final String? instructions;
+  final String? allergens;
 
   Recipe({
-    required this.name,
-    required this.image,
-    required this.cal,
-    required this.time,
-    required this.rate,
-    required this.reviews,
-    required this.isLiked,
+    this.image =
+        "https://c4.wallpaperflare.com/wallpaper/373/952/839/wooden-spoon-condiments-background-wallpaper-preview.jpg",
+    this.srno,
+    this.recipeName,
+    this.servings,
+    this.course,
+    this.calorie,
+    this.ingredientsWithQuantites,
+    this.totalTimeInMins,
+    this.instructions,
+    this.allergens,
   });
-}
 
-final List<Recipe> recipes = [
-  Recipe(
-    name: "Spicy Ramen Noodles",
-    image: "assets/images/ramen-noodles.jpg",
-    cal: 120,
-    time: 15,
-    rate: 4.4,
-    reviews: 23,
-    isLiked: false,
-  ),
-  Recipe(
-    name: "Beef Steak",
-    image: "assets/images/beaf-steak.jpg",
-    cal: 140,
-    time: 25,
-    rate: 4.4,
-    reviews: 23,
-    isLiked: true,
-  ),
-  Recipe(
-    name: "Butter Chicken",
-    image: "assets/images/butter-chicken.jpg",
-    cal: 130,
-    time: 18,
-    rate: 4.2,
-    reviews: 10,
-    isLiked: false,
-  ),
-  Recipe(
-    name: "French Toast",
-    image: "assets/images/french-toast.jpg",
-    cal: 110,
-    time: 16,
-    rate: 4.6,
-    reviews: 90,
-    isLiked: true,
-  ),
-  Recipe(
-    name: "Dumplings",
-    image: "assets/images/dumplings.jpg",
-    cal: 150,
-    time: 30,
-    rate: 4.0,
-    reviews: 76,
-    isLiked: false,
-  ),
-  Recipe(
-    name: "Mexican Pizza",
-    image: "assets/images/mexican-pizza.jpg",
-    cal: 140,
-    time: 25,
-    rate: 4.4,
-    reviews: 23,
-    isLiked: false,
-  ),
-];
+  factory Recipe.fromJson(Map<String, dynamic> json) {
+    return Recipe(
+      srno: json['Srno'] ?? 0,
+      recipeName: json['RecipeName'] ?? "None",
+      ingredientsWithQuantites: json['IngredientsWithQuantites'] ?? "Nothing to display",
+      totalTimeInMins: json['TotalTimeInMins'] ?? "0",
+      instructions: json['Instructions'] ?? "Nothing to display",
+      servings: json['Servings'] ?? "-",
+      course: json['Course'] ?? "-",
+      allergens: json['Allergens'] ?? "None",
+      calorie: json['Calorie'] ?? 0,
+    );
+  }
+}
