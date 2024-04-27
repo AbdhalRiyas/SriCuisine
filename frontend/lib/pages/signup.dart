@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/login.dart';
-import 'package:flutter_application_1/services/UserApi.dart';
+import 'package:sri_cuisine/pages/login.dart';
+import 'package:sri_cuisine/services/UserApi.dart';
 
 class SignupPage extends StatefulWidget {
   @override
@@ -57,7 +57,7 @@ class _SignupPageState extends State<SignupPage> {
                         keyboardType: TextInputType.name,
                         controller: usernameController,
                         decoration: const InputDecoration(
-                            labelText: "UserName",
+                            labelText: "User Name",
                             border: OutlineInputBorder(),
                             prefixIcon: Icon(Icons.person)),
                         validator: (value) {
@@ -65,9 +65,9 @@ class _SignupPageState extends State<SignupPage> {
                               RegExp(r'^[a-z A-Z]+$').hasMatch(value!);
 
                           if (value.isEmpty) {
-                            return "Enter userName";
+                            return "Enter user name";
                           } else if (!userNameValid) {
-                            return "Enter Valid UserName";
+                            return "Enter valid user name";
                           }
                         }),
 
@@ -91,9 +91,9 @@ class _SignupPageState extends State<SignupPage> {
                               .hasMatch(value!);
 
                           if (value.isEmpty) {
-                            return "Enter emailaddress";
+                            return "Enter email address";
                           } else if (!emailValid) {
-                            return "Enter Valid emailAddress";
+                            return "Enter valid email address!";
                           }
                         }),
 
@@ -130,7 +130,7 @@ class _SignupPageState extends State<SignupPage> {
                         if (value.isEmpty) {
                           return "Enter Password";
                         } else if (!passwordValid) {
-                          return "Enter Valid Password (Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number)";
+                          return "Minimum 8 characters | one uppercase letter\none lowercase letter | one number";
                         }
                       },
                     ),

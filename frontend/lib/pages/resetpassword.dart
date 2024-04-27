@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/services/AuthApi.dart';
+import 'package:sri_cuisine/services/AuthApi.dart';
 
 class ResetPassPage extends StatefulWidget {
   @override

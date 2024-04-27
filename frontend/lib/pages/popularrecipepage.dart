@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/popularrecipe.dart';
+import 'package:sri_cuisine/models/popularrecipe.dart';
 import 'package:iconsax/iconsax.dart';
 
 class PopularRecipePage extends StatefulWidget {
@@ -68,7 +68,6 @@ class _PopularRecipePageState extends State<PopularRecipePage>
           ],
         ),
       ),
-
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -135,7 +134,7 @@ class _PopularRecipePageState extends State<PopularRecipePage>
                             fontSize: 16),
                       ),
                     ),
-                    const SizedBox(width: 50),
+                    const SizedBox(width: 20),
                     const Icon(
                       Icons.alarm,
                     ),
@@ -148,7 +147,7 @@ class _PopularRecipePageState extends State<PopularRecipePage>
                             fontSize: 16),
                       ),
                     ),
-                    const SizedBox(width: 50),
+                    const SizedBox(width: 20),
                     const Icon(
                       Iconsax.user,
                     ),
@@ -224,7 +223,9 @@ class _PopularRecipePageState extends State<PopularRecipePage>
               labelColor: Colors.black,
               unselectedLabelColor: Colors.black.withOpacity(0.6),
               labelStyle: const TextStyle(
-                  fontFamily: 'inter', fontWeight: FontWeight.w500 , fontSize: 16),
+                  fontFamily: 'inter',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16),
               indicatorColor: Colors.black,
               tabs: const [
                 Tab(

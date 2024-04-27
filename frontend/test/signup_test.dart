@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:sri_cuisine/pages/login.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_application_1/pages/signup.dart'; // import the necessary page we want to do the testing of
+import 'package:sri_cuisine/pages/signup.dart'; // Import the SignupPage page
 
 void main() {
-  testWidgets('SignupPage Widget Test', (WidgetTester tester) async {
-    // Build our widget and trigger a frame.
+  var description = 'SignupPage Widget Test';
+  testWidgets(description, (tester) async {
+    // Build the SignupPage widget and trigger a frame.
     await tester.pumpWidget(MaterialApp(
       home: SignupPage(),
     ));
 
-    // Verify if the title is displayed correctly
-    expect(find.text('SignUp  Form'), findsOneWidget);
-
-    // Verify if the Username field is displayed correctly
-    expect(find.text('UserName'), findsOneWidget);
-
-    // Verify if the Email Address field is displayed correctly
-    expect(find.text('Email Address'), findsOneWidget);
-
-    // Verify if the Password field is displayed correctly
-    expect(find.text('Password'), findsOneWidget);
-
-    // Verify if the Sign up button is displayed correctly
+    // Verify if the SignupPage UI elements are rendered
     expect(find.text('Sign up'), findsOneWidget);
+    expect(find.text('UserName'), findsOneWidget);
+    expect(find.text('Email Address'), findsOneWidget);
+    expect(find.text('Password'), findsOneWidget);
+    expect(find.text('Already have an Account?'), findsOneWidget);
+    expect(find.text('Log in'), findsOneWidget);
 
-    // Verify if the "Already have an Account?" text is displayed correctly
-    expect(find.text("Already have an Account?"), findsOneWidget);
-    
+    // Perform a tap on the Sign up button and verify if it triggers navigation
+    await tester.tap(find.text('Sign up'));
+    await tester.pumpAndSettle(); // Wait for navigation to complete
+    // Assert the page navigation after Sign up button is tapped
+    // You may need to change this assertion based on your app's navigation logic
+    expect(find.byType(LoginPage), findsOneWidget);
   });
+
+  // Add more test cases as needed
 }
+

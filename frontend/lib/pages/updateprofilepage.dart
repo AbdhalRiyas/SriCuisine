@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/services/UserApi.dart';
+import 'package:sri_cuisine/services/UserApi.dart';
 
 class UpdateProfilePage extends StatefulWidget {
   const UpdateProfilePage({Key? key})

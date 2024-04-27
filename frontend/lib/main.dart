@@ -1,11 +1,9 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/intro_page.dart';
+import 'package:sri_cuisine/pages/intro_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -17,7 +15,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home:
-          IntroPage(),
+          const IntroPage(),
     );
   }
 }

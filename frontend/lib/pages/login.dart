@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/signup.dart';
-import 'package:flutter_application_1/services/AuthApi.dart';
+import 'package:sri_cuisine/pages/signup.dart';
+import 'package:sri_cuisine/services/AuthApi.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                         keyboardType: TextInputType.name,
                         controller: usernameController,
                         decoration: const InputDecoration(
-                            labelText: "UserName",
+                            labelText: "User Name",
                             border: OutlineInputBorder(),
                             prefixIcon: Icon(Icons.person)),
                         validator: (value) {
@@ -54,9 +54,9 @@ class _LoginPageState extends State<LoginPage> {
                               RegExp(r'^[a-z A-Z]+$').hasMatch(value!);
 
                           if (value.isEmpty) {
-                            return "Enter UserName";
+                            return "Enter User Name";
                           } else if (!userNameValid) {
-                            return "Enter Valid UserName";
+                            return "Invalid user name";
                           }
                         }),
 
@@ -72,8 +72,8 @@ class _LoginPageState extends State<LoginPage> {
                       obscureText: passToggle,
                       decoration: InputDecoration(
                         labelText: "Password",
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.lock),
+                        border: const OutlineInputBorder(),
+                        prefixIcon: const Icon(Icons.lock),
                         suffix: InkWell(
                           onTap: () {
                             setState(() {
@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                         if (value.isEmpty) {
                           return "Enter Password";
                         } else if (!passwordValid) {
-                          return "Minimum 8 characters | one uppercase letter\none lowercase letter | one number";
+                          return "Incorrect Password";
                         }
                       },
                     ),
@@ -101,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(height: 30),
 
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 2.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -119,9 +119,9 @@ class _LoginPageState extends State<LoginPage> {
                                     context, usernameController.text);
                               } else {
                                 ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
+                                    .showSnackBar(const SnackBar(
                                   content: Text("Enter your UserName"),
-                                  duration: const Duration(seconds: 2),
+                                  duration: Duration(seconds: 2),
                                 ));
                               }
                             },
@@ -173,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Don't have an account?"),
+                        const Text("Don't have an account?"),
                         GestureDetector(
                           child: const Text(
                             "  Sign Up",

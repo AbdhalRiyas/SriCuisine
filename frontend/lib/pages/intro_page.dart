@@ -3,7 +3,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/welcomepage.dart';
+import 'package:sri_cuisine/pages/welcomepage.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});

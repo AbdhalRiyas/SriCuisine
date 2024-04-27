@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/components/user_info_tile.dart';
-import 'package:flutter_application_1/pages/updateprofilepage.dart';
-import 'package:flutter_application_1/pages/welcomepage.dart';
-import 'package:flutter_application_1/services/UserApi.dart';
+import 'package:sri_cuisine/components/user_info_tile.dart';
+import 'package:sri_cuisine/pages/updateprofilepage.dart';
+import 'package:sri_cuisine/pages/welcomepage.dart';
+import 'package:sri_cuisine/services/UserApi.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -55,10 +55,7 @@ class ProfilePage extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => const UpdateProfilePage()),
                     );
-                  }
-                  // => Get.to(()=> const UpdateProfileScreen() )
-
-                  ,
+                  },
                   child: const Text('Edit Profile'),
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.black,
@@ -73,17 +70,12 @@ class ProfilePage extends StatelessWidget {
               const Divider(),
               const SizedBox(height: 20),
 
-              // UserInfoTile(
-              //     label: "User Name", value: UserApi.user.userName.toString()),
-              // UserInfoTile(
-              //     label: "Email", value: UserApi.user.email.toString()),
               UserInfoTile(
                   label: "Height", value: UserApi.user.height.toString()),
               UserInfoTile(
                   label: "Weight", value: UserApi.user.weight.toString()),
               // UserInfoTile(label: "Gender", value: "Male"),
-              UserInfoTile(
-                  label: "Age", value: UserApi.user.age.toString()),
+              UserInfoTile(label: "Age", value: UserApi.user.age.toString()),
               UserInfoTile(
                   label: "Allergies", value: UserApi.user.allergens.toString()),
               ProfileMenuWidget(
@@ -153,127 +145,3 @@ class ProfileMenuWidget extends StatelessWidget {
     );
   }
 }
-
-// class ProfilePage extends StatelessWidget {
-//   // final User user;
-//   // const ProfilePage({Key? key, required this.user}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: Colors.yellow,
-//         title: const Row(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               Icon(Icons.person),
-//               SizedBox(width: 10),
-//               Text('Profile')
-//             ]),
-//       ),
-//       // leading: IconButton(
-//       //   icon: Icon(Icons.arrow_back_ios, color: Colors.white),
-//       //   onPressed: () {
-//       //     Navigator.of(context).pop();
-//       //   },
-//       // ),
-//       // actions: [
-//       //   TextButton(
-//       //     onPressed: () {},
-//       //     child: Text(
-//       //       'Edit',
-//       //       style: TextStyle(
-//       //           color: Colors.white,
-//       //           fontSize: 14,
-//       //           fontWeight: FontWeight.w600),
-//       //     ),
-//       //     style: TextButton.styleFrom(
-//       //         foregroundColor: Colors.white,
-//       //         shape: RoundedRectangleBorder(
-//       //             borderRadius: BorderRadius.circular(100))),
-//       //   ),
-//       // ],
-//       // systemOverlayStyle: SystemUiOverlayStyle.dark,
-//       // ),
-//       body: ListView(
-//         shrinkWrap: true,
-//         physics: BouncingScrollPhysics(),
-//         children: [
-//           // Section 1 - Profile Picture Wrapper
-//           Container(
-//             color: Colors.yellow[100],
-//             padding: EdgeInsets.symmetric(vertical: 24),
-//             child: GestureDetector(
-//               onTap: () {
-//                 //print('Code to open file manager');
-//               },
-//               child: Column(
-//                 mainAxisAlignment: MainAxisAlignment.start,
-//                 crossAxisAlignment: CrossAxisAlignment.center,
-//                 children: [
-//                   Container(
-//                     width: 130,
-//                     height: 130,
-//                     margin: EdgeInsets.only(bottom: 15),
-//                     decoration: BoxDecoration(
-//                       color: Colors.grey,
-//                       borderRadius: BorderRadius.circular(100),
-//                       // Profile Picture
-//                       image: const DecorationImage(
-//                           image: AssetImage('assets/images/profile.jpg'),
-//                           fit: BoxFit.cover),
-//                     ),
-//                   ),
-//                   const Row(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: [
-//                       Text('User Name',
-//                           style: TextStyle(
-//                               fontFamily: 'inter',
-//                               fontWeight: FontWeight.w600,
-//                               color: Colors.black)),
-//                       SizedBox(width: 8),
-//                       Icon(Icons.camera_alt, color: Colors.black),
-//                     ],
-//                   )
-//                 ],
-//               ),
-//             ),
-//           ),
-//           // Section 2 - User Info Wrapper
-//           Container(
-//             margin: EdgeInsets.only(top: 24),
-//             width: MediaQuery.of(context).size.width,
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.start,
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 UserInfoTile(
-//                   margin: EdgeInsets.only(bottom: 16),
-//                   label: 'Email',
-//                   value: 'JohnDoe@gmail.com',
-//                 ),
-//                 UserInfoTile(
-//                   margin: EdgeInsets.only(bottom: 16),
-//                   label: 'Full Name',
-//                   value: 'John Doe',
-//                 ),
-//                 UserInfoTile(
-//                   margin: EdgeInsets.only(bottom: 16),
-//                   label: 'Height, Weight',
-//                   value: ' -- ',
-//                   valueBackground: Colors.white,
-//                 ),
-//                 UserInfoTile(
-//                   margin: EdgeInsets.only(bottom: 16),
-//                   label: 'Allergies',
-//                   value: '#,#,#,#',
-//                 ),
-//               ],
-//             ),
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }

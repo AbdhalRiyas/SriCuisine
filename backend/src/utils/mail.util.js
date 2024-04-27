@@ -7,12 +7,12 @@ exports.sendMail = async function (mailOptions) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "sricuisine2024@gmail.com",
-        pass: "aynr tghc ysju gbxe",
+        user: process.env.EMAIL_AUTH_USER,
+        pass: process.env.EMAIL_AUTH_USER_PASSWORD,
       },
     });
     let message = {
-      from: "sricuisine2024@gmail.com",
+      from: process.env.EMAIL_FROM,
       to: mailOptions.to,
       subject: mailOptions.subject,
       html: mailOptions.html,

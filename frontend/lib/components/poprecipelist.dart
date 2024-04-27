@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/popularrecipe.dart';
-import 'package:flutter_application_1/pages/popularrecipepage.dart';
+import 'package:sri_cuisine/models/popularrecipe.dart';
+import 'package:sri_cuisine/pages/popularrecipepage.dart';
 import 'package:iconsax/iconsax.dart';
 
 class PopRecipesList extends StatelessWidget {
@@ -21,15 +21,6 @@ class PopRecipesList extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            // TextButton(
-            //   onPressed: () => Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //       builder: (context) => const QuickFoodsScreen(),
-            //     ),
-            //   ),
-            //   child: const Text("View all"),
-            // ),
           ],
         ),
         const SizedBox(height: 20),
@@ -108,19 +99,6 @@ class PopRecipesList extends StatelessWidget {
                           )
                         ],
                       ),
-                      // Positioned(
-                      //   top: 1,
-                      //   right: 1,
-                      //   child: IconButton(
-                      //     onPressed: () {},
-                      //     style: IconButton.styleFrom(
-                      //       backgroundColor: Colors.white,
-                      //       fixedSize: const Size(30, 30),
-                      //     ),
-                      //     iconSize: 20,
-                      //     icon: const Icon(Iconsax.heart),
-                      //   ),
-                      // )
                     ],
                   ),
                 ),

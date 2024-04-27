@@ -1,13 +1,15 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/components/snackbar.dart';
-import 'package:flutter_application_1/pages/login.dart';
-import 'package:flutter_application_1/pages/otpverify.dart';
-import 'package:flutter_application_1/pages/resetpassword.dart';
-import 'package:flutter_application_1/services/UserApi.dart';
+import 'package:sri_cuisine/components/snackbar.dart';
+import 'package:sri_cuisine/pages/login.dart';
+import 'package:sri_cuisine/pages/otpverify.dart';
+import 'package:sri_cuisine/pages/resetpassword.dart';
+import 'package:sri_cuisine/services/UserApi.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_application_1/routes/api_routes.dart';
+import 'package:sri_cuisine/routes/api_routes.dart';
 
 class AuthApi {
   static const baseUrl = ApiRoutes.BASE_URL;

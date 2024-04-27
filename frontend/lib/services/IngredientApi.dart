@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/components/snackbar.dart';
-import 'package:flutter_application_1/models/ingredient.dart';
-import 'package:flutter_application_1/models/recipe.dart';
-import 'package:flutter_application_1/pages/trackerpage.dart';
-import 'package:flutter_application_1/routes/api_routes.dart';
-import 'package:flutter_application_1/services/UserApi.dart';
+import 'package:sri_cuisine/components/snackbar.dart';
+import 'package:sri_cuisine/models/ingredient.dart';
+import 'package:sri_cuisine/models/recipe.dart';
+import 'package:sri_cuisine/pages/trackerpage.dart';
+import 'package:sri_cuisine/routes/api_routes.dart';
+import 'package:sri_cuisine/services/UserApi.dart';
 import 'package:http/http.dart' as http;
 
 class IngridientApi {

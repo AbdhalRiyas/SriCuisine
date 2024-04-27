@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/available_ingredients_screen.dart';
-import 'package:flutter_application_1/pages/home_page.dart';
-import 'package:flutter_application_1/pages/profile_page.dart';
-import 'package:flutter_application_1/pages/recipes_page.dart';
+import 'package:sri_cuisine/pages/available_ingredients_screen.dart';
+import 'package:sri_cuisine/pages/home_page.dart';
+import 'package:sri_cuisine/pages/profile_page.dart';
+import 'package:sri_cuisine/pages/recipes_page.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class MainScreen extends StatefulWidget {
@@ -15,7 +15,7 @@ class _MainScreen extends State<MainScreen> {
   int _selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[
-    Scaffold(
+    const Scaffold(
       body: HomePage(),
     ),
     Scaffold(
@@ -24,7 +24,7 @@ class _MainScreen extends State<MainScreen> {
     Scaffold(
       body: RecipesPage(),
     ),
-    Scaffold(
+    const Scaffold(
       body: ProfilePage(),
     ),
   ];
@@ -40,7 +40,7 @@ class _MainScreen extends State<MainScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: GNav(
-            gap: 15,
+            gap: 10,
             backgroundColor: Colors.grey.shade900,
             color: Colors.yellow,
             activeColor: Colors.black,

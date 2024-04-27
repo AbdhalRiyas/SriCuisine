@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/recipe.dart';
+import 'package:sri_cuisine/models/recipe.dart';
 import 'package:iconsax/iconsax.dart';
 
 class RecipeDetailPage extends StatefulWidget {
@@ -140,7 +140,7 @@ class _RecipeDetailPageState extends State<RecipeDetailPage>
                             fontSize: 16),
                       ),
                     ),
-                    const SizedBox(width: 50),
+                    const SizedBox(width: 20),
                     const Icon(
                       Icons.alarm,
                     ),
@@ -153,7 +153,7 @@ class _RecipeDetailPageState extends State<RecipeDetailPage>
                             fontSize: 16),
                       ),
                     ),
-                    const SizedBox(width: 50),
+                    const SizedBox(width: 20),
                     const Icon(
                       Iconsax.user,
                     ),

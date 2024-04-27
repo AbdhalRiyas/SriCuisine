@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/components/recipe_card.dart';
-import 'package:flutter_application_1/models/recipe.dart';
-import 'package:flutter_application_1/pages/recipe_detail_page.dart';
-import 'package:flutter_application_1/services/IngredientApi.dart';
+import 'package:sri_cuisine/components/recipe_card.dart';
+import 'package:sri_cuisine/models/recipe.dart';
+import 'package:sri_cuisine/pages/recipe_detail_page.dart';
+import 'package:sri_cuisine/services/IngredientApi.dart';
 
 class RecipesPage extends StatefulWidget {
   @override
@@ -11,7 +11,7 @@ class RecipesPage extends StatefulWidget {
 }
 
 class _Recipes extends State<RecipesPage> {
-    List<Recipe> recipesList = IngridientApi.recipeList;
+  List<Recipe> recipesList = IngridientApi.recipeList;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class _Recipes extends State<RecipesPage> {
               SizedBox(width: 10),
               Text('Recommended Recipes')
             ]),
-      ), 
+      ),
       body: recipesList.isEmpty
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,40 +36,40 @@ class _Recipes extends State<RecipesPage> {
                     color: Colors.grey.shade900,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   "Add Ingredients for Personalized Recepies",
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 )
               ],
             )
-     : ListView.builder(
-        itemCount: recipesList.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => RecipeDetailPage(
-                    recipe: recipesList[index],
-                  ),
-                ),
-              );
-            },
-            child: RecipeCard(
+          : ListView.builder(
+              itemCount: recipesList.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RecipeDetailPage(
+                          recipe: recipesList[index],
+                        ),
+                      ),
+                    );
+                  },
+                  child: RecipeCard(
                     recipe: recipesList[index],
                     title: ("${recipesList[index].recipeName}"),
                     thumbnailUrl: ("${recipesList[index].image}"),
                     calorie: ("${recipesList[index].calorie}"),
                     cookTime: ("${recipesList[index].totalTimeInMins}"),
                   ),
-          );
-        },
-      ),
+                );
+              },
+            ),
     );
   }
 }

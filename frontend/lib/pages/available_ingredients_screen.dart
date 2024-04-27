@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/services/IngredientApi.dart';
-import 'package:flutter_application_1/services/UserApi.dart';
+import 'package:sri_cuisine/services/IngredientApi.dart';
+import 'package:sri_cuisine/services/UserApi.dart';
 
 class AvailableIngredientsScreen extends StatefulWidget {
   @override
@@ -120,34 +120,6 @@ class _AvailableIngredientsScreenState
     setState(() {});
     print(existingIndex);
   }
-// void _onIngredientSelected(String ingredient) async {
-//     final DateTime? selectedDate = await _selectDate(context);
-//     if (selectedDate != null) {
-//       setState(() {
-//         final existingIndex = _selectedIngredients
-//             .indexWhere((item) => item['name'] == ingredient);
-//         if (existingIndex == -1) {
-//           // Add the ingredient if it's not already selected
-//           final Map<String, dynamic> ingredientMap = {
-//             'name': ingredient,
-//             'date': selectedDate,
-//           };
-//           _selectedIngredients.add(ingredientMap);
-//         } else {
-//           // Remove the ingredient if it's already selected
-//           _selectedIngredients.removeAt(existingIndex);
-//         }
-
-//         List ingredientNames =
-//             _selectedIngredients.map((item) => item['name']).toList();
-
-//         // Print the list of ingredient names
-//         print(ingredientNames);
-
-//         IngridientApi().postAvailableIngredients(ingredientNames);
-//       });
-//     }
-//   }
 
   Future<DateTime?> _selectDate(BuildContext context) async {
     return await showDatePicker(
@@ -366,7 +338,7 @@ class _AvailableIngredientsScreenState
                   // Placeholder for recipe generation
                   if (_selectedIngredients.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text(
                           'Please select ingredients to generate recipes',
                           textAlign: TextAlign.center,

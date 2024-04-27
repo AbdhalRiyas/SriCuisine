@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/login.dart';
-import 'package:flutter_application_1/pages/signup.dart';
+import 'package:sri_cuisine/pages/login.dart';
+import 'package:sri_cuisine/pages/signup.dart';
 
 class WelcomePage extends StatelessWidget {
   @override

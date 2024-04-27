@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/services/IngredientApi.dart';
+import 'package:sri_cuisine/services/IngredientApi.dart';
 import 'package:iconsax/iconsax.dart';
 
 class HomeAppbar extends StatelessWidget {
@@ -27,7 +27,7 @@ class HomeAppbar extends StatelessWidget {
             height: 1,
           ),
         ),
-        const Spacer(),
+        // const Spacer(),
         IconButton(
           onPressed: () {
             IngridientApi.getIngredient(context);

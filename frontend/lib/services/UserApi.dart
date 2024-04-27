@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/components/snackbar.dart';
-import 'package:flutter_application_1/pages/specification_page.dart';
-import 'package:flutter_application_1/models/user.dart';
-import 'package:flutter_application_1/pages/login.dart';
-import 'package:flutter_application_1/pages/main_screen.dart';
+import 'package:sri_cuisine/components/snackbar.dart';
+import 'package:sri_cuisine/pages/specification_page.dart';
+import 'package:sri_cuisine/models/user.dart';
+import 'package:sri_cuisine/pages/login.dart';
+import 'package:sri_cuisine/pages/main_screen.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_application_1/routes/api_routes.dart';
+import 'package:sri_cuisine/routes/api_routes.dart';
 
 class UserApi {
   static const baseUrl = ApiRoutes.BASE_URL;

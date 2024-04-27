@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_application_1/pages/updateprofilepage.dart'; 
+import 'package:sri_cuisine/pages/updateprofilepage.dart'; 
 
 void main() {
   testWidgets('UpdateProfilePage Widget Test', (WidgetTester tester) async {

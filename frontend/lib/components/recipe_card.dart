@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/recipe.dart';
+import 'package:sri_cuisine/models/recipe.dart';
 
 class RecipeCard extends StatelessWidget {
   final String title;
   final String calorie;
   final String cookTime;
   final String thumbnailUrl;
-  RecipeCard({
+  const RecipeCard({super.key, 
     required this.title,
     required this.cookTime,
     required this.calorie,
@@ -66,8 +66,8 @@ class RecipeCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  padding: EdgeInsets.all(5),
-                  margin: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(5),
+                  margin: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(15),
@@ -77,7 +77,7 @@ class RecipeCard extends StatelessWidget {
                       const Icon(Icons.local_fire_department,
                           color: Colors.yellow, size: 18),
                       const SizedBox(width: 7),
-                      Text(calorie + " cal",
+                      Text("$calorie cal",
                           style: const TextStyle(
                             color: Colors.white,
                           )),
@@ -99,7 +99,7 @@ class RecipeCard extends StatelessWidget {
                         size: 18,
                       ),
                       const SizedBox(width: 7),
-                      Text(cookTime + " min",
+                      Text("$cookTime min",
                           style: const TextStyle(
                             color: Colors.white,
                           )),
